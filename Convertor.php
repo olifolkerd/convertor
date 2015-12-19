@@ -54,7 +54,12 @@ class Convertor
 	);
 
 	//constructor
-	function __construct() {
+	function __construct($unit) {
+
+	}
+
+	//run conversion
+	public function to ($unit, $decimals=null){
 
 	}
 }
