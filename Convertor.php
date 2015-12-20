@@ -56,6 +56,10 @@ class Convertor
 		"kph"=>array("base"=>"mps", "conversion"=>0.44704), //kilometer per hour
 		"mph"=>array("base"=>"mps", "conversion"=>0.277778), //kilometer per hour
 
+		///////Units Of Rotation///////
+		"deg"=>array("base"=>"deg", "conversion"=>1), //degrees - base unit for rotation
+		"rad"=>array("base"=>"deg", "conversion"=>57.2958), //radian
+
 		///////Units Of Temperature///////
 		"k"=>array("base"=>"k", "conversion"=>1), //kelvin - base unit for distance
 		"c"=>array("base"=>"c", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
@@ -83,10 +87,9 @@ class Convertor
 
 		///////Units Of Power///////
 
-		/
 
 
-		///////Units Of Angle///////
+
 
 		///////Units Of Energy///////
 		);

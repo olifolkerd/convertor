@@ -15,6 +15,7 @@ Convertor can handle a wide range of unit types including:
 	<li>Volume</li>
 	<li>Weight</li>
 	<li>Speed</li>
+	<li>Rotation</li>
 	<li>Temperature</li>
 	<li>Pressure</li>
 	<li>Time</li>
@@ -209,6 +210,10 @@ Available Units
 - mps - Meters per Second
 - kph - Kilometers Per Hour
 - mph - Miles Per Hour
+
+###Rotation
+- deg - Degrees
+- rad - Radian
 
 ###Temperature
 - k - Kelvin
