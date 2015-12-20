@@ -1,0 +1,114 @@
+
+Convertor
+================================
+
+An easy to use PHP unit conversion library
+
+Converter allows you to convert any unit to any other compatible unit type
+
+It has no external dependencies, simply include the library in your project and you're away!
+
+Convertor can handle a wide range of unit types including:
+<ul>
+	<li>Length</li>
+	<li>Volume</li>
+	<li>Temperature</li>
+	<li>Weight</li>
+	<li>Time</li>
+</ul>
+
+
+If these are not the units you are looking for then it is easy to add your own.
+
+
+
+Simple Example
+================================
+
+once you have included the Converter.php library, creating conversions is as simple as creating an instance of the Convertor with the value to convert from, then specifying the new units
+
+```php
+$simpleConvertor = new Convertor(10, "m");
+$simpleConvertor->to("ft"); //returns converted value
+```
+10 Meters = <?php echo($simpleConvertor->to("ft")); ?> Feet
+
+Covert to Multipe Units
+================================
+Once you have setup your Convertor instance you can convert the same vaule into multipe units by calling the to function multiple times
+
+```php
+$multiunitConvertor = new Convertor(10, "m");
+$multiunitConvertor->to("km"); //returns converted value in kilometers
+$multiunitConvertor->to("ft"); //returns converted value in feet
+```
+
+
+An alternative way to convert multiple units at once is to pass an array of units to the to() function:
+```php
+$multiunitConvertor->to(["km","ft","in"]); //returns an array of converted values in kilometers, feet and inches
+```
+
+The result of the above function would be:
+```php<?php echo(json_encode($multiunitConvertor->to(["km","ft","in"]), JSON_PRETTY_PRINT));?>
+```
+
+
+
+Convert to All Compatible Units
+================================
+You can convert a value to all compatible units using the toAll() function
+```php
+$AllUnitsConvertor = new Convertor(10, "m");
+$AllUnitsConvertor->toAll(); //returns all compatible converted value
+```
+
+This will return an array conatinging the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units
+
+```php<?php echo(json_encode($multiunitConvertor->toAll(), JSON_PRETTY_PRINT));?>
+```
+
+
+
+List All Available Units
+================================
+you can generate a list of all compatable units using the getUnits() function.
+```php
+$getUnitsConvertor = new Convertor();
+$getUnitsConvertor->getUnits("m"); //returns converted value
+```
+
+This will return a list of all available units compatible with the specified unit:
+
+<?php
+$getUnitsConvertor = new Convertor();
+?>
+
+
+
+
+Change From Value
+================================
+You can change the value and unit you are converting from at any point using the from() function.
+```php
+$fromChangeConvertor = new Convertor(10,"m");
+$fromChangeConvertor->to("ft"); //returns converted value in feet
+$fromChangeConvertor->from(5.23,"km"); //sets new from value in new unit
+$fromChangeConvertor->to("mi"); //returns converted new value in miles
+```
+
+10 Meters = <?php echo($fromChangeConvertor->to("ft")); ?> Feet
+
+
+5.23 Kilometers = <?php echo($fromChangeConvertor->to("mi")); ?> Miles
+
+
+Result Precision
+================================
+The precision of the results can be set using two optional paramerters in the to() function to specify the decimal precision and use of rounding.
+```php$precisionConvertor->to("ft",4,true);
+```
+The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).
+
+10 Meters = <?php echo($precisionConvertor->to("ft",4,true)); ?> Feet (rounded to 4 decimal places)
+
