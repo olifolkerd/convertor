@@ -12,8 +12,9 @@ Convertor can handle a wide range of unit types including:
 <ul>
 	<li>Length</li>
 	<li>Volume</li>
-	<li>Temperature</li>
 	<li>Weight</li>
+	<li>Temperature</li>
+	<li>Pressure</li>
 	<li>Time</li>
 </ul>
 
