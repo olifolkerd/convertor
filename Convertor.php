@@ -3,8 +3,8 @@
 
 class Convertor
 {
-	private $value; //value to convert
-	private $unit; //base unit of value
+	private $value = 0; //value to convert
+	private $baseUnit = false; //base unit of value
 
 	//array to hold unit conversion functions
 	private $units = array(
@@ -66,42 +66,151 @@ class Convertor
 		///////Units Of Angle///////
 
 		///////Units Of Energy///////
-	);
+		);
 
 	//constructor
-	function __construct($value, $unit) {
+	function __construct($value, $unit) {//
 		//unit optional
+		$this->from($value, $unit);
 	}
 
 	//set initial value again
 	public function from($value, $unit) {
 		//unit optional
+
+		if(is_null($value)){
+			throw new Exception("Value Not Set");
+		}
+
+		if($unit){
+			if(array_key_exists($unit, $this->units)){
+				$unitLookup = $this->units[$unit];
+
+				$this->baseUnit = $unitLookup["base"];
+				$this->value = $this->convertToBase($value, $unitLookup);
+			}else{
+				throw new Exception("Unit Does Not Exist");
+			}
+		}else{
+			$this->value = $value;
+		}
 	}
 
 	//run conversion to new unit
 	public function to($unit, $decimals=null, $round=true){
 		//if no unit set in constructor workout base unit of to function
 		//if no decimals set return whole result
-		//throw new Exception('Unit Does Not Exist");
+
+		if(!$unit){
+			throw new Exception("Unit Not Set");
+		}
+
+		if(array_key_exists($unit, $this->units)){
+			$unitLookup = $this->units[$unit];
+
+			$result = 0;
+
+			//if from unit not provided, asume base unit of to unit type
+			if($this->baseUnit){
+				if($unitLookup["base"] != $this->baseUnit){
+					throw new Exception("Cannot Convert Between Units of Different Types");
+				}
+			}else{
+				$this->baseUnit = $unitLookup["base"];
+			}
+
+			//calculate value
+			if(is_callable($unitLookup["conversion"])){
+				$result = $unitLookup["conversion"]($value, true);
+			}else{
+				$result = $value * $unitLookup["conversion"];
+			}
+
+			//sort decimal rounding etc.
+			if(!is_null($decimals)){
+				if($round){
+					$result = round($result, $decimals); //round to the specifidd number of decimals
+				}else{
+					$shifter = $decimals ? pow(10, $decimals) : 1;
+					$result = floor($result * $shifter) / $shifter; //truncate to the nearest number of decimals
+				}
+			}
+
+			return $result;
+		}else{
+			throw new Exception("Unit Does Not Exist");
+		}
 	}
 
 	//returns an array of conversion to all units with matching base units
 	public function toAll($decimals=null, $round=true){
+
+		if($this->baseUnit){
+
+			$unitList = array();
+
+			foreach ($units as $key => $values) {
+				if($values["base"] == $this->baseUnit){
+
+					$result = array(
+						"unit"=> $key,
+						"value"=> $this->to($key, $decimals, $round),
+						)
+
+					array_push($unitList, $result);
+				}
+			}
+
+			return $unitList;
+
+		}else{
+			throw new Exception("No From Unit Set");
+		}
 
 	}
 
 	//add conversion unit
 	public function addUnit($unit, $base, $conversion){
 		//throw new Exception('Base Unit Does Not Exist");
+
+		if(array_key_exists($unit, $this->units)){
+			throw new Exception("Unit Already Exists");
+		}else{
+			if(!array_key_exists($base, $this->units) && $base != $unit){
+				throw new Exception("Base Unit Does Not Exist");
+			}else{
+				$this->units[$unit]=>array("base"=>$base, "conversion"=>$conversion);
+			}
+		}
+
 	}
 
 	//returns and array of units available for given unit, empty value returns all units
 	public function getUnits($unit){
+		if(array_key_exists($unit, $this->units)){
+			$baseUnit = $this->units[$unit]["base"];
 
+			$unitList = array();
+
+			foreach ($units as $key => $values) {
+				if($values["base"] == $baseUnit){
+					array_push($unitList, $key);
+				}
+			}
+
+			return $unitList;
+		}else{
+			throw new Exception("Unit Does Not Exist");
+		}
 	}
 
 	//convert value to base unit
-	private function convertToBase($value, $unit){
+	private function convertToBase($value, $unitArray){
 
+		if(is_callable($unitArray["conversion"])){
+			return $unitArray["conversion"]($value, false);
+		}else{
+			return $value / $unitArray["conversion"];
+		}
 	}
 }
