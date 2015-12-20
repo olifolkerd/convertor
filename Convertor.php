@@ -1,5 +1,13 @@
 <?php
-//a unit conversion class
+
+/*
+ * This file is part of the Convertor package.
+ *
+ * (c) Oliver Folkerd <oliver.folkerd@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 class Convertor
 {
@@ -9,7 +17,12 @@ class Convertor
 	//array to hold unit conversion functions
 	private $units = array();
 
+
+	/**
+	 * setup units conversion array
+	 */
 	function defineUnits(){
+
 		$this->units = array(
 		///////Units Of Length///////
 		"m"=>array("base"=>"m", "conversion"=>1), //meter - base unit for distance
