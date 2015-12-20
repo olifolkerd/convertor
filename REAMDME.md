@@ -65,7 +65,7 @@ $multiunitConvertor->to(["km","ft","in"]); //returns an array of converted value
 ```
 
 The result of the above function would be:
-```json
+```js
 {
     "km": 0.01,
     "ft": 32.808398950131,
