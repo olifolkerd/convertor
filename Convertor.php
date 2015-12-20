@@ -86,13 +86,19 @@ class Convertor
 		"ns"=>array("base"=>"s", "conversion"=>0.000000001), //nanosecond
 
 		///////Units Of Power///////
+		"j"=>array("base"=>"j", "conversion"=>1), //joule - base unit for energy
+		"kj"=>array("base"=>"j", "conversion"=>1000), //kilojoule
+		"mj"=>array("base"=>"j", "conversion"=>1000000), //megajoule
+		"cal"=>array("base"=>"j", "conversion"=>4184), //calorie
+		"Nm"=>array("base"=>"j", "conversion"=>1), //newton meter
+		"ftlb"=>array("base"=>"j", "conversion"=>1.35582), //foot pound
+		"whr"=>array("base"=>"j", "conversion"=>3600), //watt hour
+		"kwhr"=>array("base"=>"j", "conversion"=>3600000), //kilowatt hour
+		"mwhr"=>array("base"=>"j", "conversion"=>3600000000), //megawatt hour
+		"mev"=>array("base"=>"j", "conversion"=>0.00000000000000016), //mega electron volt
 
 
-
-
-
-		///////Units Of Energy///////
-		);
+);
 }
 
 	//constructor

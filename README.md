@@ -19,6 +19,7 @@ Convertor can handle a wide range of unit types including:
 	<li>Temperature</li>
 	<li>Pressure</li>
 	<li>Time</li>
+	<li>Energy/Power</li>
 </ul>
 
 See [Available Units](#available-units) for full list of units in Convertor.
@@ -240,3 +241,15 @@ Available Units
 - ms - Milisecond
 - μs - Microsecond
 - ns - Nanosecond
+
+###Energy/Power
+- j - Joule
+- kj - Kilojoule
+- mj - Megajoule
+- cal - Calorie
+- Nm - Newton Meter
+- ftlb - Foot Pound
+- whr - Watt Hour
+- kwhr - Kilowatt Hour
+- mwhr - Megawatt Hour
+- mev - Mega Electron Volt
