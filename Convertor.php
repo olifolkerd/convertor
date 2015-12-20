@@ -47,9 +47,12 @@ class Convertor
 		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
 
 		///////Units Of Pressure///////
-		"Pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
+		"pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
+		"kpa"=>array("base"=>"Pa", "conversion"=>1000), //kilopascal
+		"mpa"=>array("base"=>"Pa", "conversion"=>1000000), //megapascal
 		"bar"=>array("base"=>"Pa", "conversion"=>100000), //bar
 		"mbar"=>array("base"=>"Pa", "conversion"=>100), //milibar
+		"psi"=>array("base"=>"Pa", "conversion"=>6894.76), //pound-force per square inch
 
 		///////Units Of Time///////
 		"s"=>array("base"=>"s", "conversion"=>1), //second - base unit for time

@@ -199,9 +199,13 @@ Available Units
 - F - Fahrenheit
 
 ###Pressure
-- Pa - Pascal
+- pa - Pascal
+- kpa - kilopascal
+- mpa - MegaPascal
 - bar - Bar
 - mbar - Milibar
+- psi - Pound-force per square inch
+
 
 ###Time
 - s - Second
