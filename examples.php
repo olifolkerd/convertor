@@ -4,7 +4,7 @@ include("Convertor.php");
 
 <html>
 <head>
-	<title>Sample Convertor Functions</title>
+	<title>Convertor - Simple PHP Unit Conversion</title>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
