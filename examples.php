@@ -142,7 +142,6 @@ $getUnitsConvertor->getUnits("m"); //returns converted value</pre>
 		$getUnitsConvertor = new Convertor();
 		?>
 
-		pre><?php echo(json_encode($getUnitsConvertor->getUnits("m"), JSON_PRETTY_PRINT));?></pre>
 	</section>
 
 	<section>
