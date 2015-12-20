@@ -11,6 +11,7 @@ It has no external dependencies, simply include the library in your project and 
 Convertor can handle a wide range of unit types including:
 <ul>
 	<li>Length</li>
+	<li>Area</li>
 	<li>Volume</li>
 	<li>Weight</li>
 	<li>Temperature</li>
@@ -176,6 +177,16 @@ Available Units
 - ft - Foot
 - yd - Yard
 - mi - Mile
+
+###Area
+- m2 - Square Meter
+- km2 - Square Kilometer
+- cm2 - Square Centimeter
+- mm2 - Square Milimeter
+- ft2 - Square Foot
+- mi2 - Square Mile
+- ac - Acre
+- ha - hectare
 
 ###Volume
 - l - Litre

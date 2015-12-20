@@ -25,6 +25,16 @@ class Convertor
 		"yd"=>array("base"=>"m", "conversion"=>0.9144), //yard
 		"mi"=>array("base"=>"m", "conversion"=>1609.344), //mile
 
+		///////Units Of Area///////
+		"m2"=>array("base"=>"m2", "conversion"=>1), //meter square - base unit for distance
+		"km2"=>array("base"=>"m2", "conversion"=>1000000), //kilometer square
+		"cm2"=>array("base"=>"m2", "conversion"=>0.0001), //centimeter square
+		"mm2"=>array("base"=>"m2", "conversion"=>0.000001), //milimeter square
+		"ft2"=>array("base"=>"m2", "conversion"=>0.092903), //foot square
+		"mi2"=>array("base"=>"m2", "conversion"=>2589988.11), //mile square
+		"ac"=>array("base"=>"m2", "conversion"=>4046.86), //acre
+		"ha"=>array("base"=>"m2", "conversion"=>10000), //hectare
+
 		///////Units Of Volume///////
 		"l"=>array("base"=>"l", "conversion"=>1), //litre - base unit for volume
 		"ml"=>array("base"=>"l", "conversion"=>0.001), //mililitre
@@ -70,13 +80,13 @@ class Convertor
 
 		///////Units Of Speed///////
 
-		///////Units Of Area///////
+
 
 
 		///////Units Of Angle///////
 
 		///////Units Of Energy///////
-);
+		);
 }
 
 	//constructor
