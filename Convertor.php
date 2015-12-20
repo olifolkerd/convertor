@@ -112,40 +112,45 @@ class Convertor
 			throw new Exception("Unit Not Set");
 		}
 
-		if(array_key_exists($unit, $this->units)){
-			$unitLookup = $this->units[$unit];
-
-			$result = 0;
-
-			//if from unit not provided, asume base unit of to unit type
-			if($this->baseUnit){
-				if($unitLookup["base"] != $this->baseUnit){
-					throw new Exception("Cannot Convert Between Units of Different Types");
-				}
-			}else{
-				$this->baseUnit = $unitLookup["base"];
-			}
-
-			//calculate value
-			if(is_callable($unitLookup["conversion"])){
-				$result = $unitLookup["conversion"]($this->value, true);
-			}else{
-				$result = $this->value / $unitLookup["conversion"];
-			}
-
-			//sort decimal rounding etc.
-			if(!is_null($decimals)){
-				if($round){
-					$result = round($result, $decimals); //round to the specifidd number of decimals
-				}else{
-					$shifter = $decimals ? pow(10, $decimals) : 1;
-					$result = floor($result * $shifter) / $shifter; //truncate to the nearest number of decimals
-				}
-			}
-
-			return $result;
+		if(is_array($unit)){
+			return $this->toMany($unit, $decimals, $round);
 		}else{
-			throw new Exception("Unit Does Not Exist");
+
+			if(array_key_exists($unit, $this->units)){
+				$unitLookup = $this->units[$unit];
+
+				$result = 0;
+
+				//if from unit not provided, asume base unit of to unit type
+				if($this->baseUnit){
+					if($unitLookup["base"] != $this->baseUnit){
+						throw new Exception("Cannot Convert Between Units of Different Types");
+					}
+				}else{
+					$this->baseUnit = $unitLookup["base"];
+				}
+
+				//calculate value
+				if(is_callable($unitLookup["conversion"])){
+					$result = $unitLookup["conversion"]($this->value, true);
+				}else{
+					$result = $this->value / $unitLookup["conversion"];
+				}
+
+				//sort decimal rounding etc.
+				if(!is_null($decimals)){
+					if($round){
+						$result = round($result, $decimals); //round to the specifidd number of decimals
+					}else{
+						$shifter = $decimals ? pow(10, $decimals) : 1;
+						$result = floor($result * $shifter) / $shifter; //truncate to the nearest number of decimals
+					}
+				}
+
+				return $result;
+			}else{
+				throw new Exception("Unit Does Not Exist");
+			}
 		}
 	}
 
@@ -160,7 +165,7 @@ class Convertor
 
 			$unitList = array();
 
-			foreach ($units as $key => $values) {
+			foreach ($this->units as $key => $values) {
 				if($values["base"] == $this->baseUnit){
 					array_push($unitList, $key);
 				}
@@ -180,13 +185,7 @@ class Convertor
 		$resultList = array();
 
 		foreach ($unitList as $key) {
-
-			$result = array(
-				"unit"=> $key,
-				"value"=> $this->to($key, $decimals, $round),
-				);
-
-			array_push($resultList, $result);
+			$resultList[$key] = $this->to($key, $decimals, $round);
 		}
 
 		return $resultList;
@@ -216,7 +215,7 @@ class Convertor
 
 			$unitList = array();
 
-			foreach ($units as $key => $values) {
+			foreach ($this->units as $key => $values) {
 				if($values["base"] == $baseUnit){
 					array_push($unitList, $key);
 				}
