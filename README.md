@@ -83,7 +83,7 @@ $AllUnitsConvertor = new Convertor(10, "m");
 $AllUnitsConvertor->toAll(); //returns all compatible converted value
 ```
 
-This will return an array conatinging the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units
+This will return an array containing the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units
 
 ```js
 {
@@ -92,7 +92,7 @@ This will return an array conatinging the conversions for all compatible units, 
     "dm": 100,
     "cm": 1000,
     "mm": 10000,
-    "\u03bcm": 10000000,
+    "μm": 10000000,
     "nm": 10000000000,
     "pm": 10000000000000,
     "in": 393.70078740157,
@@ -120,7 +120,7 @@ This will return an array of all available units compatible with the specified u
     "dm",
     "cm",
     "mm",
-    "\u03bcm",
+    "μm",
     "nm",
     "pm",
     "in",
@@ -149,7 +149,8 @@ $fromChangeConvertor->to("mi"); //returns converted new value in miles
 Result Precision
 ================================
 The precision of the results can be set using two optional paramerters in the to() function to specify the decimal precision and use of rounding.
-```php$precisionConvertor->to("ft",4,true);
+```php
+$precisionConvertor->to("ft",4,true);
 ```
 The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).
 

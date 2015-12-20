@@ -120,7 +120,7 @@ $multiunitConvertor->to(["km","ft","in"]); //returns an array of converted value
 $AllUnitsConvertor = new Convertor(10, "m");
 $AllUnitsConvertor->toAll(); //returns all compatible converted value</pre>
 
-		<p>This will return an array conatinging the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units</p>
+		<p>This will return an array containing the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units</p>
 
 		<?php
 			$AllUnitsConvertor = new Convertor(10, "m");
