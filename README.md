@@ -156,7 +156,7 @@ Result Precision
 ================================
 The precision of the results can be set using two optional paramerters in the to() function to specify the decimal precision and use of rounding.
 ```php
-$precisionConvertor->to("ft",4,true);
+$precisionConvertor->to("ft", 4, true);
 ```
 The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).
 

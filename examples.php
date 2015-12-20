@@ -172,14 +172,14 @@ $fromChangeConvertor->to("mi"); //returns converted new value in miles</pre>
 	<section>
 		<header>Result Precision</header>
 		<p>The precision of the results can be set using two optional paramerters in the to() function to specify the decimal precision and use of rounding.</p>
-		<pre>$precisionConvertor->to("ft",4,true);</pre>
+		<pre>$precisionConvertor->to("ft", 4, true);</pre>
 		<p>The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).</p>
 
 		<?php
 			$precisionConvertor = new Convertor(10, "m");
 		?>
 
-		<p>10 Meters = <?php echo($precisionConvertor->to("ft",4,true)); ?> Feet (rounded to 4 decimal places)</p>
+		<p>10 Meters = <?php echo($precisionConvertor->to("ft", 4, true)); ?> Feet (rounded to 4 decimal places)</p>
 
 	</section>
 
