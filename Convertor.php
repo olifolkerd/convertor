@@ -3,7 +3,7 @@
 
 class Convertor
 {
-	private $value = 0; //value to convert
+	private $value = null; //value to convert
 	private $baseUnit = false; //base unit of value
 
 	//array to hold unit conversion functions
@@ -71,7 +71,10 @@ class Convertor
 	//constructor
 	function __construct($value, $unit) {//
 		//unit optional
-		$this->from($value, $unit);
+		if(!is_null($value)){
+			$this->from($value, $unit);
+		}
+
 	}
 
 	//set initial value again
@@ -100,6 +103,10 @@ class Convertor
 	public function to($unit, $decimals=null, $round=true){
 		//if no unit set in constructor workout base unit of to function
 		//if no decimals set return whole result
+
+		if(!is_null($this->value)){
+			throw new Exception("From Value Not Set");
+		}
 
 		if(!$unit){
 			throw new Exception("Unit Not Set");
@@ -144,6 +151,10 @@ class Convertor
 
 	//returns an array of conversion to all units with matching base units
 	public function toAll($decimals=null, $round=true){
+
+		if(!is_null($this->value)){
+			throw new Exception("From Value Not Set");
+		}
 
 		if($this->baseUnit){
 
