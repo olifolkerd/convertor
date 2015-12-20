@@ -123,7 +123,7 @@ class Convertor
 			if(is_callable($unitLookup["conversion"])){
 				$result = $unitLookup["conversion"]($this->value, true);
 			}else{
-				$result = $this->value * $unitLookup["conversion"];
+				$result = $this->value / $unitLookup["conversion"];
 			}
 
 			//sort decimal rounding etc.
@@ -210,7 +210,7 @@ class Convertor
 		if(is_callable($unitArray["conversion"])){
 			return $unitArray["conversion"]($value, false);
 		}else{
-			return $value / $unitArray["conversion"];
+			return $value * $unitArray["conversion"];
 		}
 	}
 }

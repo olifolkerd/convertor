@@ -64,10 +64,11 @@
 		<header>Simple Example</header>
 
 		<?php
-			$simpleConvertor = new Convertor(10, "m");
+			$value = 10;
+			$simpleConvertor = new Convertor($value, "m");
 		?>
 
-		<p>10 Meters = <?php echo($simpleConvertor->to("ft")); ?> Feet</p>
+		<p><?php echo($value); ?> Meters = <?php echo($simpleConvertor->to("ft")); ?> Feet</p>
 
 	</section>
 
