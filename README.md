@@ -17,6 +17,7 @@ Convertor can handle a wide range of unit types including:
 	<li>Time</li>
 </ul>
 
+see [Available Units](#available-units) for full list of units in Convertor.
 
 If these are not the units you are looking for then it is easy to add your own.
 
@@ -156,3 +157,53 @@ The second parameter specifies the decimal precision of the result, the thir par
 
 10 Meters = 32.8084 Feet (rounded to 4 decimal places)
 
+
+Available Units
+================================
+
+###distance
+- m - Meter
+- km - Kilometer
+- dm - Decimeter
+- cm - Centimeter
+- mm - Milimeter
+- μm - Micrometer
+- nm - Nanometer
+- pm - Picometer
+- in - Inch
+- ft - Foot
+- yd - Yard
+- mi - Mile
+
+###Volume
+- l - Litre
+- ml - Mililitre
+- m3 - Cubic Meter
+- pt - Pint
+- gal - Galon
+
+###Temperature
+- K - Kelvin
+- C - Centigrade
+- F - Fahrenheit
+
+###Weight
+- kg - Kilogram
+- g - Gram
+- mg - Miligram
+- N - Newton *(based on earth gravity)*
+- st - Stone
+- lb - Pound
+- oz - Ounce
+
+###Time
+- s - Second
+- year - *Year (365 days)*
+- month - Month *(31 days)*
+- week - Week
+- day - Day
+- hr - Hour
+- min - Minute
+- ms - Milisecond
+- μs - Microsecond
+- ns - Nanosecond
