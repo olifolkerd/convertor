@@ -1,5 +1,5 @@
 <?php
-@include("Convertor.php");
+include("Convertor.php");
 ?>
 
 <html>
