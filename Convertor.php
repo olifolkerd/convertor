@@ -31,8 +31,8 @@ class Convertor
 
 		///////Units Of Temperature///////
 		"K"=>array("base"=>"K", "conversion"=>1), //kelvin - base unit for distance
-		"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15}), //celsius
-		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9)})), //Fahrenheit
+		//"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15}), //celsius
+		//"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9)}), //Fahrenheit
 
 		///////Units Of Weight///////
 		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for distance
@@ -121,9 +121,9 @@ class Convertor
 
 			//calculate value
 			if(is_callable($unitLookup["conversion"])){
-				$result = $unitLookup["conversion"]($value, true);
+				$result = $unitLookup["conversion"]($this->value, true);
 			}else{
-				$result = $value * $unitLookup["conversion"];
+				$result = $this->value * $unitLookup["conversion"];
 			}
 
 			//sort decimal rounding etc.
@@ -155,7 +155,7 @@ class Convertor
 					$result = array(
 						"unit"=> $key,
 						"value"=> $this->to($key, $decimals, $round),
-						)
+						);
 
 					array_push($unitList, $result);
 				}
@@ -179,7 +179,7 @@ class Convertor
 			if(!array_key_exists($base, $this->units) && $base != $unit){
 				throw new Exception("Base Unit Does Not Exist");
 			}else{
-				$this->units[$unit]=>array("base"=>$base, "conversion"=>$conversion);
+				$this->units[$unit] = array("base"=>$base, "conversion"=>$conversion);
 			}
 		}
 
