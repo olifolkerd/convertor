@@ -7,7 +7,10 @@ class Convertor
 	private $baseUnit = false; //base unit of value
 
 	//array to hold unit conversion functions
-	private $units = array(
+	private $units = array();
+
+	function defineUnits(){
+		$this->units = array(
 		///////Units Of Length///////
 		"m"=>array("base"=>"m", "conversion"=>1), //meter - base unit for distance
 		"km"=>array("base"=>"m", "conversion"=>1000), //kilometer
@@ -31,8 +34,8 @@ class Convertor
 
 		///////Units Of Temperature///////
 		"K"=>array("base"=>"K", "conversion"=>1), //kelvin - base unit for distance
-		//"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15}), //celsius
-		//"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9)}), //Fahrenheit
+		"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
+		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
 
 		///////Units Of Weight///////
 		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for distance
@@ -67,9 +70,13 @@ class Convertor
 
 		///////Units Of Energy///////
 		);
+}
 
 	//constructor
 	function __construct($value, $unit) {//
+
+		$this->defineUnits();
+
 		//unit optional
 		if(!is_null($value)){
 			$this->from($value, $unit);
