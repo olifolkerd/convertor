@@ -32,11 +32,6 @@ class Convertor
 		"pt"=>array("base"=>"l", "conversion"=>0.56826125), //pint
 		"gal"=>array("base"=>"l", "conversion"=>4.405), //gallon
 
-		///////Units Of Temperature///////
-		"K"=>array("base"=>"K", "conversion"=>1), //kelvin - base unit for distance
-		"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
-		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
-
 		///////Units Of Weight///////
 		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for distance
 		"g"=>array("base"=>"kg", "conversion"=>0.001), //gram
@@ -45,6 +40,16 @@ class Convertor
 		"st"=>array("base"=>"kg", "conversion"=>6.35029), //stone
 		"lb"=>array("base"=>"kg", "conversion"=>0.453592), //pound
 		"oz"=>array("base"=>"kg", "conversion"=>0.0283495), //ounce
+
+		///////Units Of Temperature///////
+		"K"=>array("base"=>"K", "conversion"=>1), //kelvin - base unit for distance
+		"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
+		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
+
+		///////Units Of Pressure///////
+		"Pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
+		"bar"=>array("base"=>"Pa", "conversion"=>100000), //bar
+		"mbar"=>array("base"=>"Pa", "conversion"=>100), //milibar
 
 		///////Units Of Time///////
 		"s"=>array("base"=>"s", "conversion"=>1), //second - base unit for time
@@ -64,12 +69,11 @@ class Convertor
 
 		///////Units Of Area///////
 
-		///////Units Of Pressure///////
 
 		///////Units Of Angle///////
 
 		///////Units Of Energy///////
-		);
+);
 }
 
 	//constructor

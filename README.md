@@ -17,7 +17,7 @@ Convertor can handle a wide range of unit types including:
 	<li>Time</li>
 </ul>
 
-see [Available Units](#available-units) for full list of units in Convertor.
+See [Available Units](#available-units) for full list of units in Convertor.
 
 If these are not the units you are looking for then it is easy to add your own.
 
@@ -161,7 +161,8 @@ The second parameter specifies the decimal precision of the result, the thir par
 Available Units
 ================================
 
-###distance
+
+###Distance
 - m - Meter
 - km - Kilometer
 - dm - Decimeter
@@ -182,11 +183,6 @@ Available Units
 - pt - Pint
 - gal - Galon
 
-###Temperature
-- K - Kelvin
-- C - Centigrade
-- F - Fahrenheit
-
 ###Weight
 - kg - Kilogram
 - g - Gram
@@ -195,6 +191,16 @@ Available Units
 - st - Stone
 - lb - Pound
 - oz - Ounce
+
+###Temperature
+- K - Kelvin
+- C - Centigrade
+- F - Fahrenheit
+
+###Pressure
+- Pa - Pascal
+- bar - Bar
+- mbar - Milibar
 
 ###Time
 - s - Second
