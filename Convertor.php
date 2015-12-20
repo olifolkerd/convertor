@@ -104,7 +104,7 @@ class Convertor
 		//if no unit set in constructor workout base unit of to function
 		//if no decimals set return whole result
 
-		if(!is_null($this->value)){
+		if(is_null($this->value)){
 			throw new Exception("From Value Not Set");
 		}
 
@@ -152,7 +152,7 @@ class Convertor
 	//returns an array of conversion to all units with matching base units
 	public function toAll($decimals=null, $round=true){
 
-		if(!is_null($this->value)){
+		if(is_null($this->value)){
 			throw new Exception("From Value Not Set");
 		}
 
@@ -162,21 +162,34 @@ class Convertor
 
 			foreach ($units as $key => $values) {
 				if($values["base"] == $this->baseUnit){
-
-					$result = array(
-						"unit"=> $key,
-						"value"=> $this->to($key, $decimals, $round),
-						);
-
-					array_push($unitList, $result);
+					array_push($unitList, $key);
 				}
 			}
 
-			return $unitList;
+			return $this->toMany($unitList, $decimals, $round);
 
 		}else{
 			throw new Exception("No From Unit Set");
 		}
+
+	}
+
+	//return multiple conversions
+	private function toMany($unitList = [], $decimals=null, $round=true){
+
+		$resultList = array();
+
+		foreach ($unitList as $key) {
+
+			$result = array(
+				"unit"=> $key,
+				"value"=> $this->to($key, $decimals, $round),
+				);
+
+			array_push($resultList, $result);
+		}
+
+		return $resultList;
 
 	}
 
