@@ -136,11 +136,13 @@ $AllUnitsConvertor->toAll(); //returns all compatible converted value</pre>
 $getUnitsConvertor = new Convertor();
 $getUnitsConvertor->getUnits("m"); //returns converted value</pre>
 
-		<p>This will return a list of all available units compatible with the specified unit:</p>
+		<p>This will return an array of all available units compatible with the specified unit:</p>
 
 		<?php
 		$getUnitsConvertor = new Convertor();
 		?>
+
+		<pre><?php echo(json_encode($getUnitsConvertor->getUnits("m"), JSON_PRETTY_PRINT));?></pre>
 
 	</section>
 

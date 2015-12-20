@@ -64,7 +64,7 @@ An alternative way to convert multiple units at once is to pass an array of unit
 $multiunitConvertor->to(["km","ft","in"]); //returns an array of converted values in kilometers, feet and inches
 ```
 
-The result of the above function would be:
+The result of the above function would be
 ```js
 {
     "km": 0.01,
@@ -85,7 +85,21 @@ $AllUnitsConvertor->toAll(); //returns all compatible converted value
 
 This will return an array conatinging the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units
 
-```php<?php echo(json_encode($multiunitConvertor->toAll(), JSON_PRETTY_PRINT));?>
+```js
+{
+    "m": 10,
+    "km": 0.01,
+    "dm": 100,
+    "cm": 1000,
+    "mm": 10000,
+    "\u03bcm": 10000000,
+    "nm": 10000000000,
+    "pm": 10000000000000,
+    "in": 393.70078740157,
+    "ft": 32.808398950131,
+    "yd": 10.936132983377,
+    "mi": 0.0062137119223733
+}
 ```
 
 
@@ -98,14 +112,23 @@ $getUnitsConvertor = new Convertor();
 $getUnitsConvertor->getUnits("m"); //returns converted value
 ```
 
-This will return a list of all available units compatible with the specified unit:
-
-<?php
-$getUnitsConvertor = new Convertor();
-?>
-
-
-
+This will return an array of all available units compatible with the specified unit:
+```js
+[
+    "m",
+    "km",
+    "dm",
+    "cm",
+    "mm",
+    "\u03bcm",
+    "nm",
+    "pm",
+    "in",
+    "ft",
+    "yd",
+    "mi"
+]
+```
 
 Change From Value
 ================================
@@ -117,10 +140,10 @@ $fromChangeConvertor->from(5.23,"km"); //sets new from value in new unit
 $fromChangeConvertor->to("mi"); //returns converted new value in miles
 ```
 
-10 Meters = <?php echo($fromChangeConvertor->to("ft")); ?> Feet
+10 Meters = 32.808398950131 Feet
 
 
-5.23 Kilometers = <?php echo($fromChangeConvertor->to("mi")); ?> Miles
+5.23 Kilometers = 3.2497713354013 Miles
 
 
 Result Precision
@@ -130,5 +153,5 @@ The precision of the results can be set using two optional paramerters in the to
 ```
 The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).
 
-10 Meters = <?php echo($precisionConvertor->to("ft",4,true)); ?> Feet (rounded to 4 decimal places)
+10 Meters = 32.8084 Feet (rounded to 4 decimal places)
 
