@@ -14,6 +14,7 @@ Convertor can handle a wide range of unit types including:
 	<li>Area</li>
 	<li>Volume</li>
 	<li>Weight</li>
+	<li>Speed</li>
 	<li>Temperature</li>
 	<li>Pressure</li>
 	<li>Time</li>
@@ -164,7 +165,7 @@ Available Units
 ================================
 
 
-###Distance
+###Length
 - m - Meter
 - km - Kilometer
 - dm - Decimeter
@@ -204,10 +205,15 @@ Available Units
 - lb - Pound
 - oz - Ounce
 
+###Speed
+- mps - Meters per Second
+- kph - Kilometers Per Hour
+- mph - Miles Per Hour
+
 ###Temperature
-- K - Kelvin
-- C - Centigrade
-- F - Fahrenheit
+- k - Kelvin
+- c - Centigrade
+- f - Fahrenheit
 
 ###Pressure
 - pa - Pascal

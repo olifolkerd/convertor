@@ -26,7 +26,7 @@ class Convertor
 		"mi"=>array("base"=>"m", "conversion"=>1609.344), //mile
 
 		///////Units Of Area///////
-		"m2"=>array("base"=>"m2", "conversion"=>1), //meter square - base unit for distance
+		"m2"=>array("base"=>"m2", "conversion"=>1), //meter square - base unit for area
 		"km2"=>array("base"=>"m2", "conversion"=>1000000), //kilometer square
 		"cm2"=>array("base"=>"m2", "conversion"=>0.0001), //centimeter square
 		"mm2"=>array("base"=>"m2", "conversion"=>0.000001), //milimeter square
@@ -43,7 +43,7 @@ class Convertor
 		"gal"=>array("base"=>"l", "conversion"=>4.405), //gallon
 
 		///////Units Of Weight///////
-		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for distance
+		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for weight
 		"g"=>array("base"=>"kg", "conversion"=>0.001), //gram
 		"mg"=>array("base"=>"kg", "conversion"=>0.000001), //miligram
 		"N"=>array("base"=>"kg", "conversion"=>9.80665002863885), //Newton (based on earth gravity)
@@ -51,10 +51,15 @@ class Convertor
 		"lb"=>array("base"=>"kg", "conversion"=>0.453592), //pound
 		"oz"=>array("base"=>"kg", "conversion"=>0.0283495), //ounce
 
+		//////Units Of Speed///////
+		"mps"=>array("base"=>"mps", "conversion"=>1), //meter per seond - base unit for speed
+		"kph"=>array("base"=>"mps", "conversion"=>0.44704), //kilometer per hour
+		"mph"=>array("base"=>"mps", "conversion"=>0.277778), //kilometer per hour
+
 		///////Units Of Temperature///////
-		"K"=>array("base"=>"K", "conversion"=>1), //kelvin - base unit for distance
-		"C"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
-		"F"=>array("base"=>"K", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
+		"k"=>array("base"=>"k", "conversion"=>1), //kelvin - base unit for distance
+		"c"=>array("base"=>"c", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
+		"f"=>array("base"=>"f", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
 
 		///////Units Of Pressure///////
 		"pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
@@ -78,9 +83,7 @@ class Convertor
 
 		///////Units Of Power///////
 
-		///////Units Of Speed///////
-
-
+		/
 
 
 		///////Units Of Angle///////
