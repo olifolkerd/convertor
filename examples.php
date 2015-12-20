@@ -83,8 +83,8 @@ $simpleConvertor->to("ft"); //returns converted value</pre>
 	</section>
 
 	<section>
-		<header>Covert to Multipe Units</header>
-		<p>Once you have setup your Convertor instance you can convert the same vaule into multipe units by calling the to function multiple times</p>
+		<header>Covert to Multiple Units</header>
+		<p>Once you have setup your Convertor instance you can convert the same value into multiple units by calling the to function multiple times</p>
 
 		<pre>
 $multiunitConvertor = new Convertor(10, "m");
@@ -131,7 +131,7 @@ $AllUnitsConvertor->toAll(); //returns all compatible converted value</pre>
 
 	<section>
 		<header>List All Available Units</header>
-		<p>you can generate a list of all compatable units using the getUnits() function.</p>
+		<p>you can generate a list of all compatible units using the getUnits() function.</p>
 						<pre>
 $getUnitsConvertor = new Convertor();
 $getUnitsConvertor->getUnits("m"); //returns converted value</pre>

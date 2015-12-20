@@ -41,9 +41,9 @@ $simpleConvertor->to("ft"); //returns converted value
 ```
 10 Meters = 32.808398950131 Feet
 
-Covert to Multipe Units
+Covert to Multiple Units
 ================================
-Once you have setup your Convertor instance you can convert the same vaule into multipe units by calling the to function multiple times
+Once you have setup your Convertor instance you can convert the same value into multiple units by calling the to function multiple times
 
 ```php
 $multiunitConvertor = new Convertor(10, "m");
@@ -106,7 +106,7 @@ This will return an array containing the conversions for all compatible units, i
 
 List All Available Units
 ================================
-you can generate a list of all compatable units using the getUnits() function.
+You can generate a list of all compatible units using the getUnits() function.
 ```php
 $getUnitsConvertor = new Convertor();
 $getUnitsConvertor->getUnits("m"); //returns converted value
