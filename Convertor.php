@@ -63,6 +63,9 @@ class Convertor
 		"st"=>array("base"=>"kg", "conversion"=>6.35029), //stone
 		"lb"=>array("base"=>"kg", "conversion"=>0.453592), //pound
 		"oz"=>array("base"=>"kg", "conversion"=>0.0283495), //ounce
+		"t"=>array("base"=>"kg", "conversion"=>1000), //metric tonne
+		"ukt"=>array("base"=>"kg", "conversion"=>1016.047), //UK Long Ton
+		"ust"=>array("base"=>"kg", "conversion"=>907.1847), //US short Ton
 
 		//////Units Of Speed///////
 		"mps"=>array("base"=>"mps", "conversion"=>1), //meter per seond - base unit for speed

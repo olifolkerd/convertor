@@ -26,7 +26,9 @@ See [Available Units](#available-units) for full list of units in Convertor.
 
 If these are not the units you are looking for then it is easy to add your own.
 
+/*
 
+ */
 Setup
 ================================
 Setting up Convertor could not be simpler.
@@ -206,6 +208,9 @@ Available Units
 - st - Stone
 - lb - Pound
 - oz - Ounce
+- t - Metric Tonne
+- ukt - UK Long Ton
+- ust - US short Ton
 
 ###Speed
 - mps - Meters per Second
