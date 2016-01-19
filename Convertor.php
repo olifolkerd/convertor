@@ -37,6 +37,11 @@ class Convertor
 		"ft"=>array("base"=>"m", "conversion"=>0.3048), //foot
 		"yd"=>array("base"=>"m", "conversion"=>0.9144), //yard
 		"mi"=>array("base"=>"m", "conversion"=>1609.344), //mile
+		"h"=>array("base"=>"m", "conversion"=>0.1016), //hand
+		"ly"=>array("base"=>"m", "conversion"=>9460730472580800), //lightyear
+		"au"=>array("base"=>"m", "conversion"=>149597870700), //astronomical unit
+		"pc"=>array("base"=>"m", "conversion"=>30856775814913672.789139379577965), //parsec
+
 
 		///////Units Of Area///////
 		"m2"=>array("base"=>"m2", "conversion"=>1), //meter square - base unit for area

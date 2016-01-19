@@ -182,6 +182,10 @@ Available Units
 - ft - Foot
 - yd - Yard
 - mi - Mile
+- h - Hand
+- ly - LightYear
+- au - Astronomical Unit
+- pc - Parsec
 
 ###Area
 - m2 - Square Meter
