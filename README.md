@@ -24,11 +24,8 @@ Convertor can handle a wide range of unit types including:
 
 See [Available Units](#available-units) for full list of units in Convertor.
 
-If these are not the units you are looking for then it is easy to add your own.
+If you need aditional unit types, then it is easy to add your own.
 
-/*
-
- */
 Setup
 ================================
 Setting up Convertor could not be simpler.
