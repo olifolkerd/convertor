@@ -2,9 +2,9 @@
 Convertor
 ================================
 
-An easy to use PHP unit conversion library
+An easy to use PHP unit conversion library.
 
-Converter allows you to convert any unit to any other compatible unit type
+Converter allows you to convert any unit to any other compatible unit type.
 
 It has no external dependencies, simply include the library in your project and you're away!
 
@@ -64,7 +64,7 @@ $multiunitConvertor->to("ft"); //returns converted value in feet
 - ft - 32.808398950131
 
 
-An alternative way to convert multiple units at once is to pass an array of units to the to() function:
+An alternative way to convert multiple units at once is to pass an array of units to the ***to()*** function:
 ```php
 $multiunitConvertor->to(["km","ft","in"]); //returns an array of converted values in kilometers, feet and inches
 ```
@@ -82,7 +82,7 @@ The result of the above function would be
 
 Convert to All Compatible Units
 ================================
-You can convert a value to all compatible units using the toAll() function
+You can convert a value to all compatible units using the ***toAll()*** function
 ```php
 $AllUnitsConvertor = new Convertor(10, "m");
 $AllUnitsConvertor->toAll(); //returns all compatible converted value
@@ -111,7 +111,7 @@ This will return an array containing the conversions for all compatible units, i
 
 List All Available Units
 ================================
-You can generate a list of all compatible units using the getUnits() function.
+You can generate a list of all compatible units using the ***getUnits()*** function.
 ```php
 $getUnitsConvertor = new Convertor();
 $getUnitsConvertor->getUnits("m"); //returns converted value
@@ -137,7 +137,7 @@ This will return an array of all available units compatible with the specified u
 
 Change From Value
 ================================
-You can change the value and unit you are converting from at any point using the from() function.
+You can change the value and unit you are converting from at any point using the ***from()*** function.
 ```php
 $fromChangeConvertor = new Convertor(10,"m");
 $fromChangeConvertor->to("ft"); //returns converted value in feet
@@ -153,11 +153,11 @@ $fromChangeConvertor->to("mi"); //returns converted new value in miles
 
 Result Precision
 ================================
-The precision of the results can be set using two optional paramerters in the to() function to specify the decimal precision and use of rounding.
+The precision of the results can be set using two optional paramerters in the ***to()*** function to specify the decimal precision and use of rounding.
 ```php
 $precisionConvertor->to("ft", 4, true);
 ```
-The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).
+The second parameter specifies the decimal precision of the result, the third parameter indicates wheather the result syhould be rounded (***true***, *default value*) or truncated (***false***).
 
 10 Meters = 32.8084 Feet (rounded to 4 decimal places)
 
