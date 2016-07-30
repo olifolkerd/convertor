@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Convertor</title>
+    <meta name="description" content="An easy to use PHP unit conversion library.">
+    <meta name="author" content="Oli Folkerd">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Convertor">
+    <meta itemprop="description" content="An easy to use PHP unit conversion library.">
+    <meta itemprop="image" content="http://olifolkerd.github.io/convertor/images/icon.jpg">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@OliFolkerd" />
+    <meta name="twitter:creator" content="@OliFolkerd" />
+    <meta name="twitter:title" content="Convertor" />
+    <meta name="twitter:description" content="An easy to use PHP unit conversion library." />
+    <meta name="twitter:image" content="https://olifolkerd.github.io/convertor/images/icon.jpg" />
+
+
+    <meta property="og:title" content="Convertor" />
+    <meta property="og:description" content="An easy to use PHP unit conversion library." />
+    <meta property="og:image" content="http://olifolkerd.github.io/convertor/images/icon.jpg"/>
+    <meta property="og:image:secure_url" content="https://olifolkerd.github.io/convertor/images/convertor_icon.jpg" />
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800,400,700,400italic,700italic|Bevan' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/styles.css" rel="stylesheet">
+
+    <!-- Pretty Print CSS -->
+    <link href="../css/prettyprint.css" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../"><img src="../images/small.png" alt="Convertor"></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="../">Home</a>
+                        </li>
+                        <li>
+                            <a href="../docs/">Documentation</a>
+                        </li>
+                        <li>
+                            <a href="../quickstart/" class="active">Quick Start</a>
+                        </li>
+                        <li>
+                            <a href="../news/">News</a>
+                        </li>
+                        <li>
+                            <a href="../community/">Community</a>
+                        </li>
+                        <li>
+                            <a id="github-link" href="https://github.com/olifolkerd/convertor">Github</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+
+        <!-- Page Content -->
+
+        <div class="container docs">
+
+            <div class="row">
+
+                <div class="col-md-9 col-xs-12 content" role="main">
+                    <a class="anchor" id="setup"></a>
+                    <article>
+                        <h1>Setup</h1>
+
+                        <p>Setting up convertor could not be simpler.</p>
+
+                        <p>Include the library in your project and you are good to go!</p>
+
+                        <pre class="prettyprint lang-php">include("Convertor.php");</pre>
+
+                    </article>
+                    <a class="anchor" id="convert"></a>
+                    <article>
+                        <h1>Convert A Unit</h1>
+
+                        <p>To convert a unit, create an instance of Convertor passsing two arguments to the constructor. The first argument is the <span class='param'>value</span> to be converted from, the second argument is a case sensitive string representing its <span class='param'>unit</span>. This returns a Convertor object that will refrenece all its conversions to your initial unit and value.</p>
+
+                        <p>You can then call the <span class='param'>to()</span> function on the Convertor object, passing the desired <span class='param'>output unit</span> as the first argument.</p>
+
+                        <pre class="prettyprint lang-php">$demoConvertor = new Convertor(10, "m");
+$demoConvertor->to("ft"); //returns converted value</pre>
+
+                            <p class="info"><strong>Result: </strong> 10 Meters = 32.808398950131 Feet</p>
+
+                            <p>A full list of available units can be found in the <a href="../docs#units">Available Units</a> section.</p>
+                        </article>
+
+                    </div>
+
+                    <div class="col-md-3" role="complementary">
+                        <nav class="docs-sidebar hidden-print hidden-xs hidden-sm affix">
+                            <ul class="nav docs-sidenav">
+                                <li><a href="#setup">Setup</a></li>
+                                <li><a href="#basic-example">Convert Unit</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <!-- Footer -->
+            <div class="container">
+
+                <footer>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>Copyright &copy; Oli Folkerd 2016</p>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+            <!-- /.container -->
+
+            <!-- jQuery -->
+            <script src="../js/jquery.js"></script>
+            <script src="../js/jqueryui.js"></script>
+
+            <!-- Bootstrap Core JavaScript -->
+            <script src="../js/bootstrap.min.js"></script>
+
+            <!-- Tabulator -->
+            <script src="../js/tabulator.js"></script>
+
+            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?style=desert"></script>
+
+            <script type="text/javascript">
+
+                $('body').scrollspy({
+                    target: '.docs-sidebar',
+                    offset: 40
+                });
+
+        // //google analytics tracking code
+        // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        // ga('create', 'UA-77206751-1', 'auto');
+        // ga('send', 'pageview');
+
+        // $("#github-link").click(function(){
+        //     ga('send', 'event', {
+        //         eventCategory: 'Github Link',
+        //         eventAction: 'click',
+        //         eventLabel: 'Github Link',
+        //         transport: 'beacon'
+        //       })
+        // });
+
+    </script>
+
+</body>
+
+</html>

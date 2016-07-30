@@ -1,0 +1,260 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 50px;
+  /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+.navbar {
+  margin-bottom: 0px !important;
+  border-bottom: 2px solid #386EB0;
+}
+.navbar li a.active {
+  color: #386EB0 !important;
+}
+.navbar .navbar-brand img {
+  height: 30px;
+  margin-top: -4px;
+}
+.jumbotron {
+  background-color: #386EB0;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,ffffff+50,000000+100 */
+  background: #386EB0;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #386EB0 1%, #79a2d5 40%, #386EB0 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #386EB0 1%, #79a2d5 40%, #386EB0 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #386EB0 1%, #79a2d5 40%, #386EB0 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@primary', endColorstr='@primary', GradientType=1);
+  /* IE6-9 */
+  margin-bottom: 0;
+  color: #fff;
+}
+.jumbotron h1 {
+  font-family: 'Bevan', 'Open Sans', sans-serif;
+}
+.jumbotron .btn {
+  background-color: #1f3e63;
+  border-color: #13253c;
+}
+.jumbotron .btn:hover {
+  background-color: #79a2d5;
+  border-color: #a0bde1;
+}
+.jumbotron .btn .glyphicon {
+  margin-right: 10px;
+}
+.tabulator {
+  font-family: sans-serif;
+}
+.news {
+  border-top: 2px solid #386EB0;
+  border-bottom: 2px solid #386EB0;
+  background: #ddd;
+  background: -moz-linear-gradient(top, #f4f4f4 1%, #cccccc 100%);
+  background: -webkit-linear-gradient(top, #f4f4f4 1%, #cccccc 100%);
+  background: linear-gradient(to bottom, #f4f4f4 1%, #cccccc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#cccccc', GradientType=0);
+}
+.news h1 {
+  margin-top: 10px;
+  color: #386EB0;
+  font-weight: bold;
+  font-size: 2em;
+}
+.news p {
+  font-weight: bold;
+}
+.news a {
+  color: #386EB0;
+  font-weight: bold;
+}
+.features {
+  margin-top: 30px;
+}
+.features #tabulator-example {
+  border-radius: 5px;
+}
+.features .main-title h2 {
+  margin-top: 00px;
+  margin-bottom: 10px;
+}
+.features h2 {
+  color: #386EB0;
+  font-weight: bold;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+}
+.features .tabulator {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.features .feature a {
+  text-decoration: none;
+  color: inherit;
+}
+.features .feature .frame {
+  padding: 20px 10px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin: 1px 1px 20px 1px;
+}
+.features .feature .frame:hover {
+  margin: 0 0 19px 0;
+  border: 2px solid #386EB0;
+  cursor: pointer;
+}
+.features .feature .frame:hover .fa {
+  color: #386EB0;
+}
+.features .feature .frame .fa {
+  font-size: 5em;
+}
+ul.docs-sidenav {
+  margin-top: 20px;
+}
+ul.docs-sidenav li.active {
+  border-left: 3px solid #386EB0;
+}
+ul.docs-sidenav li.active a {
+  padding-left: 12px;
+  color: #386EB0;
+}
+ul.docs-sidenav li a {
+  box-sizing: border-box;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: #999;
+}
+ul.docs-sidenav li a.indent {
+  padding-left: 30px;
+  color: #8ba4c3;
+}
+ul.docs-sidenav li a:hover {
+  color: #386EB0;
+}
+.docs a.anchor {
+  display: block;
+  position: relative;
+  margin-top: -20px;
+  padding-top: 20px;
+  visibility: hidden;
+}
+.docs .intro {
+  box-sizing: border-box;
+  margin-top: 40px;
+  border-top: 2px solid #386EB0;
+  border-bottom: 2px solid #386EB0;
+  padding: 10px;
+  background-color: #f1f6fb;
+  font-size: 18px;
+  color: #000;
+}
+.docs .intro i {
+  font-size: 65px;
+  color: #386EB0;
+}
+.docs .intro p:last-child {
+  margin-bottom: 0;
+}
+.docs .intro a {
+  color: #386EB0;
+  font-weight: bold;
+}
+.docs article {
+  position: relative;
+  margin-top: 50px;
+}
+.docs article .primary {
+  color: #386EB0;
+  font-weight: bold;
+}
+.docs article h1 {
+  border-bottom: 1px solid #386EB0;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.docs article h1 .datestamp {
+  color: #386EB0;
+}
+.docs article h1 .doc-link,
+.docs article h1 .datestamp {
+  margin-left: 20px;
+  font-size: 20px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.docs article h1 .doc-link i,
+.docs article h1 .datestamp i {
+  font-size: .9em;
+}
+.docs article h2 {
+  font-size: 25px;
+  margin-top: 30px;
+  font-weight: bold;
+}
+.docs article h3 {
+  margin-top: 18px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.docs article a {
+  color: #386EB0;
+  font-weight: bold;
+}
+.docs article p.info {
+  padding: 5px 10px;
+  border: 1px solid #C0C0C0;
+  border-radius: 5px;
+  background-color: #F0F0F0;
+}
+.docs article .param {
+  font-weight: bold;
+  font-style: italic;
+}
+.docs article button,
+.docs article select {
+  margin-right: 20px;
+}
+.docs article table.plain {
+  width: 100%;
+}
+.docs article table.plain td,
+.docs article table.plain th {
+  border: 1px solid #999;
+  padding: 3px;
+}
+.docs article table.plain th {
+  background: #eee;
+}
+.docs article table:not(.plain) {
+  width: 100%;
+}
+.docs article table:not(.plain) thead {
+  font-weight: bold;
+  background: #ddd;
+}
+.docs article table:not(.plain) thead th {
+  border: 1px solid #999;
+}
+.docs article table:not(.plain) th,
+.docs article table:not(.plain) td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.docs article table:not(.plain) tbody tr:nth-of-type(even) td {
+  background: #f9f9f9;
+}
+.docs article table:not(.plain) tbody tr:last-of-type td {
+  border-bottom: 1px solid #999;
+}
+.docs article table:not(.plain) tbody tr td:first-of-type {
+  border-left: 1px solid #999;
+}
+.docs article table:not(.plain) tbody tr td:last-of-type {
+  border-right: 1px solid #999;
+}
+footer {
+  margin: 50px 0;
+}

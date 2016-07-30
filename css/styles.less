@@ -1,0 +1,377 @@
+@primary:#386EB0;
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.navbar {
+	margin-bottom: 0px !important;
+
+	li{
+		a.active{
+			color: @primary !important;
+		}
+	}
+
+	.navbar-brand{
+		img{
+			height:30px;
+			margin-top:-4px;
+		}
+	}
+	border-bottom:2px solid @primary;
+
+}
+
+.jumbotron{
+
+	background-color: @primary;
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+1,ffffff+50,000000+100 */
+	background: @primary; /* Old browsers */
+	background: -moz-linear-gradient(left,  @primary 1%,  lighten(@primary, 20%)  40%, @primary 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  @primary 1%, lighten(@primary, 20%)  40%,@primary 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  @primary 1%, lighten(@primary, 20%)  40%,@primary 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@primary', endColorstr='@primary',GradientType=1 ); /* IE6-9 */
+	margin-bottom:0;
+
+	color: #fff;
+
+	h1{
+		font-family: 'Bevan', 'Open Sans', sans-serif;
+	}
+
+	.btn{
+
+		background-color: darken(@primary, 20%);
+		border-color: darken(@primary, 30%);
+
+		&:hover{
+			background-color: lighten(@primary, 20%);
+			border-color: lighten(@primary, 30%);
+		}
+
+		.glyphicon{
+			margin-right: 10px;
+		}
+	}
+}
+
+.tabulator{
+	font-family: sans-serif;
+}
+
+.news{
+	border-top:2px solid @primary;
+	border-bottom:2px solid @primary;
+
+	background: #ddd;
+	background: -moz-linear-gradient(top,  #f4f4f4 1%, #cccccc 100%);
+	background: -webkit-linear-gradient(top,  #f4f4f4 1%,#cccccc 100%);
+	background: linear-gradient(to bottom,  #f4f4f4 1%,#cccccc 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#cccccc',GradientType=0 );
+
+	h1{
+		margin-top: 10px;
+
+		color:@primary;
+		font-weight: bold;
+		font-size: 2em;
+	}
+
+	p{
+		font-weight: bold;
+	}
+
+	a{
+		color: @primary;
+		font-weight: bold;
+	}
+}
+
+.features{
+
+	margin-top:30px;
+
+	#tabulator-example{
+		border-radius: 5px;
+	}
+
+	.main-title{
+		h2{
+			margin-top:00px;
+			margin-bottom:10px;
+		}
+	}
+
+	h2{
+		color:@primary;
+		font-weight: bold;
+		font-size: 2.5em;
+
+		margin-bottom: 40px;
+	}
+
+
+	.tabulator{
+		margin-top:20px;
+		margin-bottom:30px;
+	}
+
+	.feature{
+
+		a{
+			text-decoration: none;
+			color:inherit;
+		}
+
+		.frame{
+
+			padding:20px 10px 10px 10px;
+			border-radius: 10px;
+			border:1px solid #ccc;
+			box-sizing: border-box;
+
+			margin:1px 1px 20px 1px;
+
+			&:hover{
+
+				margin:0 0 19px 0;
+
+				border:2px solid @primary;
+
+				cursor: pointer;
+
+				.fa{
+					color:@primary;
+				}
+			}
+
+			.fa{
+				font-size: 5em;
+			}
+		}
+	}
+
+}
+
+ul.docs-sidenav{
+	margin-top:20px;
+
+	li{
+
+		&.active{
+			border-left:3px solid @primary;
+
+			a{
+				padding-left:12px;
+				color: @primary;
+			}
+		}
+
+		a{
+			box-sizing: border-box;
+			padding:5px 15px;
+
+			font-weight: bold;
+			color:#999;
+
+			&.indent{
+				padding-left:30px;
+
+				color: desaturate(lighten(@primary, 20%), 20%);
+			}
+
+			&:hover{
+				color:@primary;
+			}
+		}
+	}
+}
+
+
+.docs{
+	a.anchor {
+	    display: block;
+	    position: relative;
+	    margin-top: -20px;
+	    padding-top: 20px;
+	    visibility: hidden;
+	}
+
+	.intro{
+		box-sizing: border-box;
+		margin-top: 40px;
+
+		border-top:2px solid @primary;
+		border-bottom:2px solid @primary;
+		// border-radius: 5px;
+
+		padding:10px;
+
+		background-color: lighten(@primary, 51%);
+
+		font-size: 18px;
+		color: #000;
+
+		i{
+			font-size: 65px;
+			color: @primary;
+		}
+
+		p:last-child{
+			margin-bottom:0;
+		}
+
+		a{
+			color: @primary;
+			font-weight: bold;
+		}
+	}
+
+	article{
+
+		position: relative;
+
+		margin-top: 50px;
+
+		.primary{
+			color: @primary;
+			font-weight: bold;
+		}
+
+		h1{
+
+			border-bottom:1px solid @primary;
+
+			padding-bottom:10px;
+
+			font-weight: bold;
+
+			.datestamp{
+				color: @primary;
+			}
+
+			.doc-link, .datestamp{
+				margin-left:20px;
+
+				font-size: 20px;
+				vertical-align: middle;
+
+				white-space: nowrap;
+
+				i{
+					font-size: .9em;
+				}
+			}
+		}
+
+		h2{
+			font-size: 25px;
+			margin-top:30px;
+			// font-size: 1.5em;
+			font-weight: bold;
+		}
+
+		h3{
+
+			margin-top:18px;
+			font-size: 17px;
+			font-weight: bold;
+			// color: #666;
+		}
+
+		a{
+			color: @primary;
+			font-weight: bold;
+		}
+
+		p{
+			&.info{
+
+				padding:5px 10px;
+
+				border:1px solid #C0C0C0;
+				border-radius: 5px;
+
+				background-color: #F0F0F0;
+
+			}
+		}
+
+		.param{
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		button, select{
+			margin-right:20px;
+		}
+
+		table.plain{
+
+			width:100%;
+
+			td, th{
+				border:1px solid #999;
+				padding:3px;
+			}
+
+			th{
+				background: #eee;
+			}
+
+		}
+
+		table:not(.plain){
+
+			width:100%;
+
+			thead{
+				font-weight: bold;
+
+				background: #ddd;
+
+				th{
+					border: 1px solid #999;
+				}
+			}
+
+			th,td{
+				border:1px solid #ccc;
+				padding:5px;
+			}
+
+			tbody{
+				tr{
+					&:nth-of-type(even){
+						td{
+							background: #f9f9f9;
+						}
+					}
+
+					&:last-of-type{
+						td{
+							border-bottom: 1px solid #999;
+						}
+					}
+
+					td{
+						&:first-of-type{
+							border-left: 1px solid #999;
+						}
+
+						&:last-of-type{
+							border-right: 1px solid #999;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+footer {
+	margin: 50px 0;
+}
