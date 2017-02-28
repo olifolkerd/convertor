@@ -83,8 +83,8 @@ class Convertor
 
 		///////Units Of Temperature///////
 		"k"=>array("base"=>"k", "conversion"=>1), //kelvin - base unit for distance
-		"c"=>array("base"=>"c", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
-		"f"=>array("base"=>"f", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
+		"c"=>array("base"=>"k", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
+		"f"=>array("base"=>"k", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
 
 		///////Units Of Pressure///////
 		"pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
