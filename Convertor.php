@@ -54,7 +54,7 @@ class Convertor
 		"ha"=>array("base"=>"m2", "conversion"=>10000), //hectare
 
 		///////Units Of Volume///////
-		"l"=>array("base"=>"l", "conversion"=>1), //litre - base unit for volume
+		"l"=>array("base"=>"l", "conversion"=>1000), //litre - base unit for volume
 		"ml"=>array("base"=>"l", "conversion"=>0.001), //mililitre
 		"m3"=>array("base"=>"l", "conversion"=>1), //meters cubed
 		"pt"=>array("base"=>"l", "conversion"=>0.56826125), //pint
