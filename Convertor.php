@@ -54,11 +54,18 @@ class Convertor
 		"ha"=>array("base"=>"m2", "conversion"=>10000), //hectare
 
 		///////Units Of Volume///////
-		"l"=>array("base"=>"l", "conversion"=>1000), //litre - base unit for volume
+		"dm3"=>array("base"=>"l", "conversion"=>1), //cubic decimeter - litre
+		"l"=>array("base"=>"l", "conversion"=>1), //litre - base unit for volume
 		"ml"=>array("base"=>"l", "conversion"=>0.001), //mililitre
-		"m3"=>array("base"=>"l", "conversion"=>1), //meters cubed
+		"cm3"=>array("base"=>"l", "conversion"=>0.001), //cubic centimeter - mililitre
+		"hl"=>array("base"=>"l", "conversion"=>100), //hectolitre
+		"kl"=>array("base"=>"l", "conversion"=>1000), //kilolitre
+		"m3"=>array("base"=>"l", "conversion"=>1000), //meters cubed - kilolitre
 		"pt"=>array("base"=>"l", "conversion"=>0.56826125), //pint
 		"gal"=>array("base"=>"l", "conversion"=>4.405), //gallon
+		"qt"=>array("base"=>"l", "conversion"=>1.1365225), //quart
+		"ft3"=>array("base"=>"l", "conversion"=>28.316846592), //cubic feet
+		"in3"=>array("base"=>"l", "conversion"=>0.016387064), //cubic inches
 
 		///////Units Of Weight///////
 		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for weight
