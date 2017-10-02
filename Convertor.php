@@ -108,7 +108,7 @@ class Convertor
 		"week"=>array("base"=>"s", "conversion"=>604800), //week
 		"day"=>array("base"=>"s", "conversion"=>86400), //day
 		"hr"=>array("base"=>"s", "conversion"=>3600), //hour
-		"min"=>array("base"=>"s", "conversion"=>30), //minute
+		"min"=>array("base"=>"s", "conversion"=>60), //minute
 		"ms"=>array("base"=>"s", "conversion"=>0.001), //milisecond
 		"μs"=>array("base"=>"s", "conversion"=>0.000001), //microsecond
 		"ns"=>array("base"=>"s", "conversion"=>0.000000001), //nanosecond
