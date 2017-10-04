@@ -1,10 +1,10 @@
 {
     "name": "olifolkerd/convertor",
-    "description": "todo",
-    "license": "todo",
+    "description": "An easy to use PHP unit conversion library.",
+    "license": "MIT",
     "authors": [
         {
-            "name": "todo",
+            "name": "Oli Folkerd",
             "email": "todo@todo.todo"
         }
     ],
