@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+namespace Olifolkerd\Convertor;
+
 class Convertor
 {
 	private $value = null; //value to convert
