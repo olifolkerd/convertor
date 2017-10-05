@@ -50,3 +50,7 @@ $simpleConvertor = new Convertor(10, "m");
 $simpleConvertor->to("ft"); //returns converted value
 ```
 10 Meters = 32.808398950131 Feet
+
+Resources
+================================
+- PHP-Skeleton as a template for the autoloading structure: [github](https://github.com/petk/php-skeleton)

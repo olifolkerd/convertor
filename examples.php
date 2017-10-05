@@ -1,5 +1,6 @@
-<?php
-include("Convertor.php");
+<?php         require 'vendor/autoload.php';
+
+use Olifolkerd\Convertor\Convertor;
 ?>
 
 <html>
@@ -75,7 +76,9 @@ $simpleConvertor = new Convertor(10, "m");
 $simpleConvertor->to("ft"); //returns converted value</pre>
 
 		<?php
-			$simpleConvertor = new Convertor(10, "m");
+
+
+        $simpleConvertor = new Convertor(10, "m");
 		?>
 
 		<p>10 Meters = <?php echo($simpleConvertor->to("ft")); ?> Feet</p>
@@ -139,7 +142,7 @@ $getUnitsConvertor->getUnits("m"); //returns converted value</pre>
 		<p>This will return an array of all available units compatible with the specified unit:</p>
 
 		<?php
-		$getUnitsConvertor = new Convertor();
+		$getUnitsConvertor = new Convertor(1,'km');
 		?>
 
 		<pre><?php echo(json_encode($getUnitsConvertor->getUnits("m"), JSON_PRETTY_PRINT));?></pre>
