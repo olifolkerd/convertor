@@ -130,7 +130,7 @@ class Convertor
 }
 
 	/**
-	 * Construt Object
+	 * Construct Object
 	 *
 	 * @param    number $value -  a numeric value to base conversions on
 	 * @param    string $unit (optional) - the unit symbol for the start value
