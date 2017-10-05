@@ -142,7 +142,7 @@ $getUnitsConvertor->getUnits("m"); //returns converted value</pre>
 		<p>This will return an array of all available units compatible with the specified unit:</p>
 
 		<?php
-		$getUnitsConvertor = new Convertor(1,'km'); //error!
+		$getUnitsConvertor = new Convertor(1,'km');
 		?>
 
 		<pre><?php echo(json_encode($getUnitsConvertor->getUnits("m"), JSON_PRETTY_PRINT));?></pre>
