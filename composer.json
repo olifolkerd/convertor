@@ -8,7 +8,9 @@
             "email": "oliver.folkerd@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "phpunit/phpunit": "^6.2"
+    },
     "autoload": {
         "psr-4": {
             "Olifolkerd\\Convertor\\": "src/"

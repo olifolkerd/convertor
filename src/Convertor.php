@@ -75,7 +75,7 @@ class Convertor
 		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for weight
 		"g"=>array("base"=>"kg", "conversion"=>0.001), //gram
 		"mg"=>array("base"=>"kg", "conversion"=>0.000001), //miligram
-		"N"=>array("base"=>"kg", "conversion"=>9.80665002863885), //Newton (based on earth gravity)
+		"N"=>array("base"=>"kg", "conversion"=>1/9.80665002863885), //Newton (based on earth gravity)
 		"st"=>array("base"=>"kg", "conversion"=>6.35029), //stone
 		"lb"=>array("base"=>"kg", "conversion"=>0.453592), //pound
 		"oz"=>array("base"=>"kg", "conversion"=>0.0283495), //ounce
@@ -85,8 +85,8 @@ class Convertor
 
 		//////Units Of Speed///////
 		"mps"=>array("base"=>"mps", "conversion"=>1), //meter per seond - base unit for speed
-		"kph"=>array("base"=>"mps", "conversion"=>0.44704), //kilometer per hour
-		"mph"=>array("base"=>"mps", "conversion"=>0.277778), //kilometer per hour
+		"kph"=>array("base"=>"mps", "conversion"=>1/3.6), //kilometer per hour
+		"mph"=>array("base"=>"mps", "conversion"=>1.60934*1/3.6), //kilometer per hour
 
 		///////Units Of Rotation///////
 		"deg"=>array("base"=>"deg", "conversion"=>1), //degrees - base unit for rotation
