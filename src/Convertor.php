@@ -11,6 +11,7 @@
 
 namespace Olifolkerd\Convertor;
 
+use function Composer\Autoload\includeFile;
 use Olifolkerd\Convertor\Exceptions\ConvertorDifferentTypeException;
 use Olifolkerd\Convertor\Exceptions\ConvertorException;
 use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
@@ -38,10 +39,14 @@ class Convertor
         if (!isset($unitFile))
             $unitFile = $configDir . 'Units.php';
         //if only the filename is given and it exists in the config folder add the path to the file
-        if ($unitFile) {
+        if (!is_array($unitFile)) {
             $configFiles = scandir($configDir);
             if (in_array($unitFile, $configFiles))
                 $unitFile = $configDir . $unitFile;
+        } //if an array is given, use the array.
+        else {
+            $this->units = $unitFile;
+            return;
         }
 
         //lastly check if the file exists, then include or throw an error.

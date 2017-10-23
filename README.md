@@ -70,6 +70,13 @@ $c=new Convertor(100,"mps");
 $c=new Convertor(100,"mps",'/path/to/my/own/Units.php');
 //using the name of the file in conf:
 $c=new Convertor(100,"mps",'BaseUnits.php');
+//define own units inline
+$arr = [
+    "m" => array("base" => "m", "conversion" => 1),
+    "km" => array("base" => "m", "conversion" => 1000),
+];
+
+$c = new Convertor(1, 'm', $arr);
 ```
 
 Currently two Unit files are available - one containing the owner's notation and the other one a more formal notation.
