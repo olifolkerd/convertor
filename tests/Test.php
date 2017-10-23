@@ -1,6 +1,7 @@
 <?php
 
 use Olifolkerd\Convertor\Convertor;
+use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 use PHPUnit\Framework\TestCase;
 
 //todo: add tests for all other conversions.
@@ -27,7 +28,8 @@ class Test extends TestCase
     /** @test */
     public function testTemperature()
     {
-        $conv = new Convertor(0,'c');
+        $conv = new Convertor();
+        $conv->from(0,'c');
         $val=$conv->toAll(2);
 
         $this->assertEquals(32,$val['f'] );
@@ -38,7 +40,8 @@ class Test extends TestCase
     /** @test */
     public function testWeight()
     {
-        $conv = new Convertor(100,'g');
+        $conv = new Convertor();
+        $conv->from(100,'g');
         $val=$conv->toAll(6,true);
         $this->assertEquals(100,$val['g'] );
         $this->assertEquals(.1,$val['kg'] );
@@ -47,16 +50,19 @@ class Test extends TestCase
         $this->assertEquals(1e-4,$val['t']);
         $this->assertEquals(3.527400,$val['oz'],"Not inside of float delta",0.00001);
         $this->assertEquals(0.0157473,$val['st'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.0157473,$val['st'],"Not inside of float delta",0.00001);
         $this->assertEquals(0.9806649999787735,$val['N'],"Not inside of float delta",0.00001);
     }
 
     /** @test */
     public function testPressure()
     {
-        $conv = new Convertor(100,'pa');
+        $conv = new Convertor();
+        $conv->from(100,'pa');
         $val=$conv->toAll(6,true);
         // http://convert-units.info/pressure/hectopascal/1
         $this->assertEquals(100,$val['pa'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1,$val['hpa'],"Not inside of float delta",0.00001);
         $this->assertEquals(.1,$val['kpa'],"Not inside of float delta",0.00001);
         $this->assertEquals(0.0001,$val['mpa'],"Not inside of float delta",0.00001);
         $this->assertEquals(0.001,$val['bar'],"Not inside of float delta",0.00001);
@@ -65,24 +71,42 @@ class Test extends TestCase
     }
 
     /** @test */
+    public function testAreaDensity()
+    {
+        $conv = new Convertor();
+        $conv->from(1,'kg m**-2');
+        $val=$conv->toAll(6,true);
+        $this->assertEquals(1,$val['kg m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000000,$val['kg km**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-4,$val['kg cm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1e-6,$val['kg mm**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000,$val['g m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1000000,$val['mg m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(0.157473,$val['st m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(2.20462,$val['lb m**-2'],"Not inside of float delta",0.00001);
+        $this->assertEquals(35.274,$val['oz m**-2'],"Not inside of float delta",0.00001);
+    }
+    /** @test */
     public function testSpeeds()
     {
-        $conv = new Convertor(3,'kph');
+        $conv = new Convertor();
+        $conv->from(3,'km h**-1');
         $val=$conv->toAll(6,true);
-        $this->assertEquals(0.83333,$val['mps'],"Not inside of float delta",0.00001);
-        $this->assertEquals(3,$val['kph'],"Not inside of float delta",0.00001);
-        $this->assertEquals(1.86411,$val['mph'],"Not inside of float delta",0.00001);
-        $conv->from(100,'mps');
+        $this->assertEquals(0.83333,$val['m s**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(3,$val['km h**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(1.86411,$val['mi h**-1'],"Not inside of float delta",0.00001);
+        $conv->from(100,'m s**-1');
         $val=$conv->toAll(3,true);
-        $this->assertEquals(100,$val['mps'],"Not inside of float delta",0.00001);
-        $this->assertEquals(360,$val['kph'],"Not inside of float delta",0.00001);
-        $this->assertEquals(223.694,$val['mph'],"Not inside of float delta",0.0001);
+        $this->assertEquals(100,$val['m s**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(360,$val['km h**-1'],"Not inside of float delta",0.00001);
+        $this->assertEquals(223.694,$val['mi h**-1'],"Not inside of float delta",0.0001);
     }
 
     /** @test */
     public function testDistance()
     {
-        $conv = new Convertor(5,'km');
+        $conv = new Convertor();
+        $conv->from(5,'km');
         $val=$conv->toAll(6,true);
         $delta=1e-4;
         $this->assertEquals(5e3,$val['m'],"Not inside of float delta",$delta);
@@ -111,7 +135,8 @@ class Test extends TestCase
 
     /** @test */
     public function testTime(){
-        $conv = new Convertor(100,'hr');
+        $conv = new Convertor();
+        $conv->from(100,'hr');
         $val=$conv->toAll(6,true);
         $delta=1e-4;
         $this->assertEquals(100*60*60,$val['s'],"Not inside of float delta",$delta);
@@ -127,8 +152,15 @@ class Test extends TestCase
     /** @test */
     public function testUnitDoesNotExist()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(ConvertorInvalidUnitException::class);
         new Convertor(1, "nonsenseunit");
     }
 
+    /** @test */
+    public function testBaseConstructor()
+    {
+        $c = new Convertor();
+        $c->from(6.16, 'ft');
+        $this->assertEquals(1.87757, $c->to('m', 5));
+    }
 }

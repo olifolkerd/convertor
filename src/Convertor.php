@@ -11,399 +11,333 @@
 
 namespace Olifolkerd\Convertor;
 
-use Exception;
+use Olifolkerd\Convertor\Exceptions\ConvertorDifferentTypeException;
+use Olifolkerd\Convertor\Exceptions\ConvertorException;
+use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
+use Olifolkerd\Convertor\Exceptions\FileNotFoundException;
+use PHPUnit\Runner\Exception;
 
 class Convertor
 {
-	private $value = null; //value to convert
-	private $baseUnit = false; //base unit of value
+    private $value = null; //value to convert
+    private $baseUnit = false; //base unit of value
 
-	//array to hold unit conversion functions
-	private $units = array();
-
-
-	/**
-	 * setup units conversion array
-	 */
-	function defineUnits(){
-
-		$this->units = array(
-		///////Units Of Length///////
-		"m"=>array("base"=>"m", "conversion"=>1), //meter - base unit for distance
-		"km"=>array("base"=>"m", "conversion"=>1000), //kilometer
-		"dm"=>array("base"=>"m", "conversion"=>0.1), //decimeter
-		"cm"=>array("base"=>"m", "conversion"=>0.01), //centimeter
-		"mm"=>array("base"=>"m", "conversion"=>0.001), //milimeter
-		"µm"=>array("base"=>"m", "conversion"=>0.000001), //micrometer
-		"nm"=>array("base"=>"m", "conversion"=>0.000000001), //nanometer
-		"pm"=>array("base"=>"m", "conversion"=>0.000000000001), //picometer
-		"in"=>array("base"=>"m", "conversion"=>0.0254), //inch
-		"ft"=>array("base"=>"m", "conversion"=>0.3048), //foot
-		"yd"=>array("base"=>"m", "conversion"=>0.9144), //yard
-		"mi"=>array("base"=>"m", "conversion"=>1609.344), //mile
-		"h"=>array("base"=>"m", "conversion"=>0.1016), //hand
-		"ly"=>array("base"=>"m", "conversion"=>9460730472580800), //lightyear
-		"au"=>array("base"=>"m", "conversion"=>149597870700), //astronomical unit
-		"pc"=>array("base"=>"m", "conversion"=>30856775814913672.789139379577965), //parsec
+    //array to hold unit conversion functions
+    private $units = array();
 
 
-		///////Units Of Area///////
-		"m2"=>array("base"=>"m2", "conversion"=>1), //meter square - base unit for area
-		"km2"=>array("base"=>"m2", "conversion"=>1000000), //kilometer square
-		"cm2"=>array("base"=>"m2", "conversion"=>0.0001), //centimeter square
-		"mm2"=>array("base"=>"m2", "conversion"=>0.000001), //milimeter square
-		"ft2"=>array("base"=>"m2", "conversion"=>0.092903), //foot square
-		"mi2"=>array("base"=>"m2", "conversion"=>2589988.11), //mile square
-		"ac"=>array("base"=>"m2", "conversion"=>4046.86), //acre
-		"ha"=>array("base"=>"m2", "conversion"=>10000), //hectare
+    /**
+     * Allow switching between different unit definition files. Defaults to src/Config/Units.php
+     * @param $unitFile - either the filename in src/Config folder OR a path to another file that exists.
+     * @throws FileNotFoundException if the file does not exist.
+     */
+    function defineUnits($unitFile)
+    {
+        $configDir = __DIR__ . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR;
+        //default to the newest Units.php file
+        if (!isset($unitFile))
+            $unitFile = $configDir . 'Units.php';
+        //if only the filename is given and it exists in the config folder add the path to the file
+        if ($unitFile) {
+            $configFiles = scandir($configDir);
+            if (in_array($unitFile, $configFiles))
+                $unitFile = $configDir . $unitFile;
+        }
 
-		///////Units Of Volume///////
-		"dm3"=>array("base"=>"l", "conversion"=>1), //cubic decimeter - litre
-		"l"=>array("base"=>"l", "conversion"=>1), //litre - base unit for volume
-		"ml"=>array("base"=>"l", "conversion"=>0.001), //mililitre
-		"cm3"=>array("base"=>"l", "conversion"=>0.001), //cubic centimeter - mililitre
-		"hl"=>array("base"=>"l", "conversion"=>100), //hectolitre
-		"kl"=>array("base"=>"l", "conversion"=>1000), //kilolitre
-		"m3"=>array("base"=>"l", "conversion"=>1000), //meters cubed - kilolitre
-		"pt"=>array("base"=>"l", "conversion"=>0.56826125), //pint
-		"gal"=>array("base"=>"l", "conversion"=>4.405), //gallon
-		"qt"=>array("base"=>"l", "conversion"=>1.1365225), //quart
-		"ft3"=>array("base"=>"l", "conversion"=>28.316846592), //cubic feet
-		"in3"=>array("base"=>"l", "conversion"=>0.016387064), //cubic inches
-
-		///////Units Of Weight///////
-		"kg"=>array("base"=>"kg", "conversion"=>1), //kilogram - base unit for weight
-		"g"=>array("base"=>"kg", "conversion"=>0.001), //gram
-		"mg"=>array("base"=>"kg", "conversion"=>0.000001), //miligram
-		"N"=>array("base"=>"kg", "conversion"=>1/9.80665002863885), //Newton (based on earth gravity)
-		"st"=>array("base"=>"kg", "conversion"=>6.35029), //stone
-		"lb"=>array("base"=>"kg", "conversion"=>0.453592), //pound
-		"oz"=>array("base"=>"kg", "conversion"=>0.0283495), //ounce
-		"t"=>array("base"=>"kg", "conversion"=>1000), //metric tonne
-		"ukt"=>array("base"=>"kg", "conversion"=>1016.047), //UK Long Ton
-		"ust"=>array("base"=>"kg", "conversion"=>907.1847), //US short Ton
-
-		//////Units Of Speed///////
-		"mps"=>array("base"=>"mps", "conversion"=>1), //meter per seond - base unit for speed
-		"kph"=>array("base"=>"mps", "conversion"=>1/3.6), //kilometer per hour
-		"mph"=>array("base"=>"mps", "conversion"=>1.60934*1/3.6), //kilometer per hour
-
-		///////Units Of Rotation///////
-		"deg"=>array("base"=>"deg", "conversion"=>1), //degrees - base unit for rotation
-		"rad"=>array("base"=>"deg", "conversion"=>57.2958), //radian
-
-		///////Units Of Temperature///////
-		"k"=>array("base"=>"k", "conversion"=>1), //kelvin - base unit for distance
-		"c"=>array("base"=>"k", "conversion"=>function($val, $tofrom){return $tofrom ? $val - 273.15 : $val + 273.15;}), //celsius
-		"f"=>array("base"=>"k", "conversion"=>function($val, $tofrom){return $tofrom ? ($val * 9/5 - 459.67) : (($val + 459.67) * 5/9);}), //Fahrenheit
-
-		///////Units Of Pressure///////
-		"pa"=>array("base"=>"Pa", "conversion"=>1), //Pascal - base unit for Pressure
-		"kpa"=>array("base"=>"Pa", "conversion"=>1000), //kilopascal
-		"mpa"=>array("base"=>"Pa", "conversion"=>1000000), //megapascal
-		"bar"=>array("base"=>"Pa", "conversion"=>100000), //bar
-		"mbar"=>array("base"=>"Pa", "conversion"=>100), //milibar
-		"psi"=>array("base"=>"Pa", "conversion"=>6894.76), //pound-force per square inch
-
-		///////Units Of Time///////
-		"s"=>array("base"=>"s", "conversion"=>1), //second - base unit for time
-		"year"=>array("base"=>"s", "conversion"=>31536000), //year - standard year
-		"month"=>array("base"=>"s", "conversion"=>18748800), //month - 31 days
-		"week"=>array("base"=>"s", "conversion"=>604800), //week
-		"day"=>array("base"=>"s", "conversion"=>86400), //day
-		"hr"=>array("base"=>"s", "conversion"=>3600), //hour
-		"min"=>array("base"=>"s", "conversion"=>60), //minute
-		"ms"=>array("base"=>"s", "conversion"=>0.001), //milisecond
-		"μs"=>array("base"=>"s", "conversion"=>0.000001), //microsecond
-		"ns"=>array("base"=>"s", "conversion"=>0.000000001), //nanosecond
-
-		///////Units Of Power///////
-		"j"=>array("base"=>"j", "conversion"=>1), //joule - base unit for energy
-		"kj"=>array("base"=>"j", "conversion"=>1000), //kilojoule
-		"mj"=>array("base"=>"j", "conversion"=>1000000), //megajoule
-		"cal"=>array("base"=>"j", "conversion"=>4184), //calorie
-		"Nm"=>array("base"=>"j", "conversion"=>1), //newton meter
-		"ftlb"=>array("base"=>"j", "conversion"=>1.35582), //foot pound
-		"whr"=>array("base"=>"j", "conversion"=>3600), //watt hour
-		"kwhr"=>array("base"=>"j", "conversion"=>3600000), //kilowatt hour
-		"mwhr"=>array("base"=>"j", "conversion"=>3600000000), //megawatt hour
-		"mev"=>array("base"=>"j", "conversion"=>0.00000000000000016), //mega electron volt
-		);
-}
-
-	/**
-	 * Construct Object
-	 *
-	 * @param    number $value -  a numeric value to base conversions on
-	 * @param    string $unit (optional) - the unit symbol for the start value
-	 * @return    an instance of the Convertor object
-	 */
-	function __construct($value, $unit) {//
-
-		//create units array
-		$this->defineUnits();
-
-		//unit optional
-		if(!is_null($value)){
-
-			//set from unit
-			$this->from($value, $unit);
-		}
-
-	}
-
-	/**
-	 * Set from conversion value / unit
-	 *
-	 * @param    number $value -  a numeric value to base conversions on
-	 * @param    string $unit (optional) - the unit symbol for the start value
-	 * @return   none
-	 */
-	public function from($value, $unit) {
-
-		//check if value has been set
-		if(is_null($value)){
-			throw new Exception("Value Not Set");
-		}
-
-		if($unit){
-
-			//check that unit exists
-			if(array_key_exists($unit, $this->units)){
-				$unitLookup = $this->units[$unit];
-
-				//convert unit to base unit for this unit type
-				$this->baseUnit = $unitLookup["base"];
-				$this->value = $this->convertToBase($value, $unitLookup);
-			}else{
-				throw new Exception("Unit Does Not Exist");
-			}
-		}else{
-			$this->value = $value;
-		}
-	}
-
-	/**
-	 * Convert from value to new unit
-	 *
-	 * @param    string[] $unit -  the unit symbol (or array of symblos) for the conversion unit
-	 * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
-	 * @param    boolean $round (optional, default-true) - round or floor the conversion result
-	 * @return   none
-	 */
-	public function to($unit, $decimals=null, $round=true){
-
-		//check if from value is set
-		if(is_null($this->value)){
-			throw new Exception("From Value Not Set");
-		}
-
-		//check if to unit is set
-		if(!$unit){
-			throw new Exception("Unit Not Set");
-		}
-
-		//if unit is array, itterate through each unit
-		if(is_array($unit)){
-			return $this->toMany($unit, $decimals, $round);
-		}else{
-			//check unit symbol exists
-			if(array_key_exists($unit, $this->units)){
-				$unitLookup = $this->units[$unit];
-
-				$result = 0;
-
-				//if from unit not provided, asume base unit of to unit type
-				if($this->baseUnit){
-					if($unitLookup["base"] != $this->baseUnit){
-						throw new Exception("Cannot Convert Between Units of Different Types");
-					}
-				}else{
-					$this->baseUnit = $unitLookup["base"];
-				}
-
-				//calculate converted value
-				if(is_callable($unitLookup["conversion"])){
-					// if unit has a conversion function, run value through it
-					$result = $unitLookup["conversion"]($this->value, true);
-				}else{
-					$result = $this->value / $unitLookup["conversion"];
-				}
-
-				//result precision and rounding
-				if(!is_null($decimals)){
-					if($round){
-						 //round to the specifidd number of decimals
-						$result = round($result, $decimals);
-					}else{
-						//truncate to the nearest number of decimals
-						$shifter = $decimals ? pow(10, $decimals) : 1;
-						$result = floor($result * $shifter) / $shifter;
-					}
-				}
-
-				return $result;
-			}else{
-				throw new Exception("Unit Does Not Exist");
-			}
-		}
-	}
-
-	/**
-	 * Itterate through multiple unit conversions
-	 *
-	 * @param    string[] $unit -  the array of symblos for the conversion units
-	 * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
-	 * @param    boolean $round (optional, default-true) - round or floor the conversion result
-	 * @return   array - results of the coversions
-	 */
-	private function toMany($unitList = [], $decimals=null, $round=true){
-
-		$resultList = array();
-
-		foreach ($unitList as $key) {
-			//convert units for each element in the array
-			$resultList[$key] = $this->to($key, $decimals, $round);
-		}
-
-		return $resultList;
-	}
+        //lastly check if the file exists, then include or throw an error.
+        if (file_exists($unitFile))
+            $this->units = include $unitFile;
+        else
+            throw new FileNotFoundException("File could not be found. Given path='$unitFile'" .
+                "either use the name of one of the pre defined configuration files or pass the complete path to the file.");
+    }
 
 
-	/**
-	 * Convert from value to all compatable units
-	 *
-	 * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
-	 * @param    boolean $round (optional, default-true) - round or floor the conversion result
-	 * @return   array - results of conversion to all units with matching base units
-	 */
-	public function toAll($decimals=null, $round=true){
+    /**
+     * Convertor constructor.
+     * @param $value - to convert
+     * @param $unit - base unit
+     */
+    function __construct($value = null, $unit = null, $unitFile = null)
+    {//
 
-		//ensure the from value has been set correctly
-		if(is_null($this->value)){
-			throw new Exception("From Value Not Set");
-		}
+        //create units array
+        $this->defineUnits($unitFile);
 
-		//ensure the base unit has been set correctly
-		if($this->baseUnit){
+        //unit optional
+        if (!is_null($value) && !is_null($unit)) {
 
-			$unitList = array();
+            //set from unit
+            $this->from($value, $unit);
+        }
 
-			//build array of units that share the same base unit.
-			foreach ($this->units as $key => $values) {
-				if($values["base"] == $this->baseUnit){
-					array_push($unitList, $key);
-				}
-			}
+    }
 
-			//convert units for all matches
-			return $this->toMany($unitList, $decimals, $round);
+    /**
+     * Set from conversion value / unit
+     *
+     * @param    number $value -  a numeric value to base conversions on
+     * @param    string $unit (optional) - the unit symbol for the start value
+     * @return   mixed
+     * @throws ConvertorException - general errors
+     * @throws ConvertorInvalidUnitException - specific invalid unit exception
+     */
+    public function from($value, $unit)
+    {
 
-		}else{
-			throw new Exception("No From Unit Set");
-		}
+        //check if value has been set
+        if (is_null($value)) {
+            throw new ConvertorException("Value Not Set");
+        }
 
-	}
+        if ($unit) {
+            //check that unit exists
+            if (array_key_exists($unit, $this->units)) {
+                if (isset($this->units[$unit]))
+                    $unitLookup = $this->units[$unit];
+
+                if (isset($unitLookup)) {
+
+                    //convert unit to base unit for this unit type
+                    $this->baseUnit = $unitLookup["base"];
+                    $this->value = $this->convertToBase($value, $unitLookup);
+                }
+            } else {
+                throw new ConvertorInvalidUnitException("Conversion from Unit u=$unit not possible - unit does not exist.");
+            }
+        } else {
+            $this->value = $value;
+        }
+    }
+
+    /**
+     * Convert from value to new unit
+     *
+     * @param    mixed $unit -  the unit symbol (or array of symbols) for the conversion unit
+     * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
+     * @param    boolean $round (optional, default-true) - round or floor the conversion result
+     * @return   mixed
+     */
+    public function to($unit, $decimals = null, $round = true)
+    {
+
+        //check if from value is set
+        if (is_null($this->value)) {
+            throw new ConvertorException("From Value Not Set.");
+        }
+
+        //check if to unit is set
+        if (!$unit) {
+            throw new ConvertorException("Unit Not Set");
+        }
+
+        //if unit is array, iterate through each unit
+        if (is_array($unit)) {
+            return $this->toMany($unit, $decimals, $round);
+        } else {
+            //check unit symbol exists
+            if (array_key_exists($unit, $this->units)) {
+                $unitLookup = $this->units[$unit];
+
+                $result = 0;
+
+                //if from unit not provided, assume base unit of to unit type
+                if ($this->baseUnit) {
+                    if ($unitLookup["base"] != $this->baseUnit) {
+                        throw new ConvertorDifferentTypeException("Cannot Convert Between Units of Different Types");
+                    }
+                } else {
+                    $this->baseUnit = $unitLookup["base"];
+                }
+
+                //calculate converted value
+                if (is_callable($unitLookup["conversion"])) {
+                    // if unit has a conversion function, run value through it
+                    $result = $unitLookup["conversion"]($this->value, true);
+                } else {
+                    $result = $this->value / $unitLookup["conversion"];
+                }
+
+                //result precision and rounding
+                if (!is_null($decimals)) {
+                    if ($round) {
+                        //round to the specifidd number of decimals
+                        $result = round($result, $decimals);
+                    } else {
+                        //truncate to the nearest number of decimals
+                        $shifter = $decimals ? pow(10, $decimals) : 1;
+                        $result = floor($result * $shifter) / $shifter;
+                    }
+                }
+
+                return $result;
+            } else {
+                throw new ConvertorInvalidUnitException("Conversion to Unit u=$unit not possible - unit does not exist.");
+            }
+        }
+    }
+
+    /**
+     * Itterate through multiple unit conversions
+     *
+     * @param    string[] $unit -  the array of symblos for the conversion units
+     * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
+     * @param    boolean $round (optional, default-true) - round or floor the conversion result
+     * @return   array - results of the coversions
+     */
+    private function toMany($unitList = [], $decimals = null, $round = true)
+    {
+
+        $resultList = array();
+
+        foreach ($unitList as $key) {
+            //convert units for each element in the array
+            $resultList[$key] = $this->to($key, $decimals, $round);
+        }
+
+        return $resultList;
+    }
 
 
-	/**
-	 * Add Conversion Unit
-	 *
-	 * @param    string $unit - the symbol for the new unit
-	 * @param    string $base - the symbol for the base unit of this unit
-	 * @param    number/function() - the conversion ration or conversion function from this unit to its base unit
-	 * @return   boolean - true - if successfull
-	 */
-	public function addUnit($unit, $base, $conversion){
+    /**
+     * Convert from value to all compatable units
+     *
+     * @param    int $decimals (optional, default-null) - the decimal precision of the conversion result
+     * @param    boolean $round (optional, default-true) - round or floor the conversion result
+     * @return   array - results of conversion to all units with matching base units
+     */
+    public function toAll($decimals = null, $round = true)
+    {
 
-		//check that the new unit does not ealread exist
-		if(array_key_exists($unit, $this->units)){
-			throw new Exception("Unit Already Exists");
-		}else{
-			//make sure the base unit for the new unit exists or that the new unit is a base unit itself
-			if(!array_key_exists($base, $this->units) && $base != $unit){
-				throw new Exception("Base Unit Does Not Exist");
-			}else{
-				//add unit to units array
-				$this->units[$unit] = array("base"=>$base, "conversion"=>$conversion);
-				return true;
-			}
-		}
+        //ensure the from value has been set correctly
+        if (is_null($this->value)) {
+            throw new ConvertorException("From Value Not Set");
+        }
 
-	}
+        //ensure the base unit has been set correctly
+        if ($this->baseUnit) {
+
+            $unitList = array();
+
+            //build array of units that share the same base unit.
+            foreach ($this->units as $key => $values) {
+                if ($values["base"] == $this->baseUnit) {
+                    array_push($unitList, $key);
+                }
+            }
+
+            //convert units for all matches
+            return $this->toMany($unitList, $decimals, $round);
+
+        } else {
+            throw new ConvertorException("No From Unit Set");
+        }
+
+    }
 
 
-	/**
-	 * Remove Conversion Unit
-	 *
-	 * @param    string $unit - the symbol for the unit to be removed
-	 * @return   boolean - true - if successfull
-	 */
-	public function removeUnit($unit){
-		//check unit exists
-		if(array_key_exists($unit, $this->units)){
+    /**
+     * Add Conversion Unit
+     *
+     * @param    string $unit - the symbol for the new unit
+     * @param    string $base - the symbol for the base unit of this unit
+     * @param    number /function() - the conversion ration or conversion function from this unit to its base unit
+     * @return   boolean - true - if successfull
+     */
+    public function addUnit($unit, $base, $conversion)
+    {
 
-			//if unit is base unit remove all dependant units
-			if($this->units[$unit]["base"] == $unit){
-				foreach ($this->units as $key => $values) {
-					if($values["base"] == $unit){
-						//remove unit
-						unset($this->units[$key]);
-					}
-				}
+        //check that the new unit does not ealread exist
+        if (array_key_exists($unit, $this->units)) {
+            throw new ConvertorException("Unit Already Exists");
+        } else {
+            //make sure the base unit for the new unit exists or that the new unit is a base unit itself
+            if (!array_key_exists($base, $this->units) && $base != $unit) {
+                throw new ConvertorException("Base Unit Does Not Exist");
+            } else {
+                //add unit to units array
+                $this->units[$unit] = array("base" => $base, "conversion" => $conversion);
+                return true;
+            }
+        }
 
-			}else{
-				//remove unit
-				unset($this->units[$unit]);
-			}
+    }
 
-			return true;
 
-		}else{
-			throw new Exception("Unit Does Not Exist");
-		}
-	}
+    /**
+     * Remove Conversion Unit
+     *
+     * @param    string $unit - the symbol for the unit to be removed
+     * @return   boolean - true - if successful
+     */
+    public function removeUnit($unit)
+    {
+        //check unit exists
+        if (array_key_exists($unit, $this->units)) {
 
-	/**
-	 * List all available conversion units for given unit
-	 *
-	 * @param    string $unit - the symbol to search for available conversion units
-	 * @return   array - list of all available conversion units
-	 */
-	public function getUnits($unit){
-		//check that unit exists
-		if(array_key_exists($unit, $this->units)){
-			//find base unit
-			$baseUnit = $this->units[$unit]["base"];
+            //if unit is base unit remove all dependant units
+            if ($this->units[$unit]["base"] == $unit) {
+                foreach ($this->units as $key => $values) {
+                    if ($values["base"] == $unit) {
+                        //remove unit
+                        unset($this->units[$key]);
+                    }
+                }
 
-			$unitList = array();
-			//find all units that are linked to the base unit
-			foreach ($this->units as $key => $values) {
-				if($values["base"] == $baseUnit){
-					array_push($unitList, $key);
-				}
-			}
+            } else {
+                //remove unit
+                unset($this->units[$unit]);
+            }
 
-			return $unitList;
-		}else{
-			throw new Exception("Unit Does Not Exist");
-		}
-	}
+            return true;
 
-	/**
-	 * Convert from value to its base unit
-	 *
-	 * @param    number $value - from value
-	 * @param    array $unitArray - unit array from object units array
-	 * @return   number - converted value
-	 */
-	private function convertToBase($value, $unitArray){
+        } else {
+            throw new ConvertorInvalidUnitException("Removal of Unit u=$unit not possible - unit does not exist.");
+        }
+    }
 
-		if(is_callable($unitArray["conversion"])){
-			// if unit has a conversion function, run value through it
-			return $unitArray["conversion"]($value, false);
-		}else{
-			return $value * $unitArray["conversion"];
-		}
-	}
+    /**
+     * List all available conversion units for given unit
+     *
+     * @param    string $unit - the symbol to search for available conversion units
+     * @return   array - list of all available conversion units
+     */
+    public function getUnits($unit)
+    {
+        //check that unit exists
+        if (array_key_exists($unit, $this->units)) {
+            //find base unit
+            $baseUnit = $this->units[$unit]["base"];
+
+            $unitList = array();
+            //find all units that are linked to the base unit
+            foreach ($this->units as $key => $values) {
+                if ($values["base"] == $baseUnit) {
+                    array_push($unitList, $key);
+                }
+            }
+
+            return $unitList;
+        } else {
+            throw new ConvertorInvalidUnitException("Unit u=$unit Does Not Exist");
+        }
+    }
+
+    /**
+     * Convert from value to its base unit
+     *
+     * @param    number $value - from value
+     * @param    array $unitArray - unit array from object units array
+     * @return   number - converted value
+     */
+    private function convertToBase($value, $unitArray)
+    {
+
+        if (is_callable($unitArray["conversion"])) {
+            // if unit has a conversion function, run value through it
+            return $unitArray["conversion"]($value, false);
+        } else {
+            return $value * $unitArray["conversion"];
+        }
+    }
 }
