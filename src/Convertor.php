@@ -11,6 +11,8 @@
 
 namespace Olifolkerd\Convertor;
 
+use Exception;
+
 class Convertor
 {
 	private $value = null; //value to convert
