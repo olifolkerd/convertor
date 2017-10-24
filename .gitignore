@@ -1,3 +1,10 @@
 .DS_Store
 *.sublime-workspace
 *.sublime-project
+vendor
+.idea
+Thumbs.db
+npm-debug.log
+/bower_components
+/node_modules
+/vendor

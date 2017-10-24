@@ -4,7 +4,7 @@ An easy to use PHP unit conversion library.
 
 Full documentation & demos can be found at: [http://olifolkerd.github.io/convertor](http://olifolkerd.github.io/convertor)
 
-Convertor
+Convertor 
 ================================
 
 An easy to use PHP unit conversion library.
@@ -27,17 +27,26 @@ Convertor can handle a wide range of unit types including:
 	<li>Energy/Power</li>
 </ul>
 
-See [The Documentation](http://olifolkerd.github.io/convertor) for full list of units in Convertor.
-
 If you need aditional unit types, then it is easy to add your own.
 
 Setup
 ================================
-Setting up Convertor could not be simpler.
-
-Include the library
-```php
-include("Convertor.php");
+Setting up Convertor could not be simpler by using Composer.
+Add the following to your `composer.json` file:
+```
+"repositories": [
+	...
+	{
+		"type": "vcs",
+		"url": "https://github.com/FWidm/convertor"
+	}
+	...
+],
+"require": {
+	...
+	"olifolkerd/convertor": "dev-master",
+	...
+}
 ```
 
 Simple Example
@@ -50,6 +59,36 @@ $simpleConvertor = new Convertor(10, "m");
 $simpleConvertor->to("ft"); //returns converted value
 ```
 10 Meters = 32.808398950131 Feet
+
+Define your own Units
+================================
+Convertor now supports using different files that contain the unit conversions by specifying either the path to the file containing the unit array or the filename of the file in `src/config`directly:
+```php
+//using the default file in `src/Config/Units.php`:
+$c=new Convertor(100,"mps");
+//using another file somewhere in the project:
+$c=new Convertor(100,"mps",'/path/to/my/own/Units.php');
+//using the name of the file in conf:
+$c=new Convertor(100,"mps",'BaseUnits.php');
+//define own units inline
+$arr = [
+    "m" => array("base" => "m", "conversion" => 1),
+    "km" => array("base" => "m", "conversion" => 1000),
+];
+
+$c = new Convertor(1, 'm', $arr);
+```
+
+Currently two Unit files are available - one containing the owner's notation and the other one a more formal notation.
+Differences in notation:
+
+| Variant | km²     | kg/m²      | FileName        |
+|---------|---------|------------|-----------------|
+| owner   | 'km2'   | -          | `BaseUnits.php` |
+| formal  | 'km**2' | 'kg m**-2' | `Units.php`     |
+
+Additionally the `Units.php` file contains area-density definitions.
+
 
 Resources
 ================================
