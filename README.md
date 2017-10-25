@@ -38,7 +38,7 @@ Add the following to your `composer.json` file:
 	...
 	{
 		"type": "vcs",
-		"url": "https://github.com/FWidm/convertor"
+		"url": "https://github.com/olifolkerd/convertor"
 	}
 	...
 ],
