@@ -8,7 +8,7 @@
             "email": "oliver.folkerd@gmail.com"
         }
     ],
-    "require": {
+    "require-dev": {
         "phpunit/phpunit": "^6.2"
     },
     "autoload": {
