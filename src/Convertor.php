@@ -11,12 +11,10 @@
 
 namespace Olifolkerd\Convertor;
 
-use function Composer\Autoload\includeFile;
 use Olifolkerd\Convertor\Exceptions\ConvertorDifferentTypeException;
 use Olifolkerd\Convertor\Exceptions\ConvertorException;
 use Olifolkerd\Convertor\Exceptions\ConvertorInvalidUnitException;
 use Olifolkerd\Convertor\Exceptions\FileNotFoundException;
-use PHPUnit\Runner\Exception;
 
 class Convertor
 {
