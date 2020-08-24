@@ -1,6 +1,6 @@
 <?php         require 'vendor/autoload.php';
 
-use Olifolkerd\Convertor\LegacyConvertor;
+use Olifolkerd\Convertor\Convertor;
 ?>
 
 <html>
@@ -78,7 +78,7 @@ $simpleConvertor->to("ft"); //returns converted value</pre>
 		<?php
 
 
-        $simpleConvertor = new LegacyConvertor(10, "m");
+        $simpleConvertor = new Convertor(10, "m");
 		?>
 
 		<p>10 Meters = <?php echo($simpleConvertor->to("ft")); ?> Feet</p>
@@ -94,7 +94,7 @@ $multiunitConvertor = new Convertor(10, "m");
 $multiunitConvertor->to("km"); //returns converted value in kilometers
 $multiunitConvertor->to("ft"); //returns converted value in feet</pre>
 		<?php
-			$multiunitConvertor = new LegacyConvertor(10, "m");
+			$multiunitConvertor = new Convertor(10, "m");
 		?>
 
 		<p>10 Meters:
@@ -126,7 +126,7 @@ $AllUnitsConvertor->toAll(); //returns all compatible converted value</pre>
 		<p>This will return an array containing the conversions for all compatible units, in the case of "meters" as a start unit, Convertor will return all available distance units</p>
 
 		<?php
-			$AllUnitsConvertor = new LegacyConvertor(10, "m");
+			$AllUnitsConvertor = new Convertor(10, "m");
 		?>
 
 		<pre><?php echo(json_encode($multiunitConvertor->toAll(), JSON_PRETTY_PRINT));?></pre>
@@ -142,7 +142,7 @@ $getUnitsConvertor->getUnits("m"); //returns converted value</pre>
 		<p>This will return an array of all available units compatible with the specified unit:</p>
 
 		<?php
-		$getUnitsConvertor = new LegacyConvertor(1,'km');
+		$getUnitsConvertor = new Convertor(1,'km');
 		?>
 
 		<pre><?php echo(json_encode($getUnitsConvertor->getUnits("m"), JSON_PRETTY_PRINT));?></pre>
@@ -160,7 +160,7 @@ $fromChangeConvertor->to("mi"); //returns converted new value in miles</pre>
 
 
 		<?php
-			$fromChangeConvertor = new LegacyConvertor(10, "m");
+			$fromChangeConvertor = new Convertor(10, "m");
 		?>
 
 		<p>10 Meters = <?php echo($fromChangeConvertor->to("ft")); ?> Feet</p>
@@ -179,7 +179,7 @@ $fromChangeConvertor->to("mi"); //returns converted new value in miles</pre>
 		<p>The second parameter specifies the decimal precision of the result, the thir parameter indicates weather the result syhould be rounded (true, default value) or truncated (false).</p>
 
 		<?php
-			$precisionConvertor = new LegacyConvertor(10, "m");
+			$precisionConvertor = new Convertor(10, "m");
 		?>
 
 		<p>10 Meters = <?php echo($precisionConvertor->to("ft", 4, true)); ?> Feet (rounded to 4 decimal places)</p>
