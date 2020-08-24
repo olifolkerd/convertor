@@ -19,5 +19,10 @@
             "Olifolkerd\\Convertor\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Olifolkerd\\Convertor\\Tests": "tests/"
+        }
+    },
     "minimum-stability": "dev"
 }
