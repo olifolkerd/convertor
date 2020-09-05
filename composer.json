@@ -8,12 +8,20 @@
             "email": "oliver.folkerd@gmail.com"
         }
     ],
+    "require": {
+        "php": "^7.1"
+    },
     "require-dev": {
         "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": {
             "Olifolkerd\\Convertor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Olifolkerd\\Convertor\\Tests": "tests/"
         }
     },
     "minimum-stability": "dev"
