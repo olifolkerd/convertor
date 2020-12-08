@@ -77,7 +77,7 @@ final class ConversionRepository
             throw new ConvertorException("Base Unit Does Not Exist");
         }
 
-        $this->definitions[] = $definition;
+        $this->definitions[$definition->getUnit()] = $definition;
     }
 
     public function removeConversion(string $unit): void
