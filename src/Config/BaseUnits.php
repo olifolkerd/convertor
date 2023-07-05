@@ -97,4 +97,9 @@ return array(
     "kwhr" => array("base" => "j", "conversion" => 3600000), //kilowatt hour
     "mwhr" => array("base" => "j", "conversion" => 3600000000), //megawatt hour
     "mev" => array("base" => "j", "conversion" => 0.00000000000000016), //mega electron volt
+    'w' => ['base' => 'w', 'conversion' => 1], //watt - base unit for power
+    'kw' => ['base' => 'w', 'conversion' => 1000], //kilowatt
+    'mw' => ['base' => 'w', 'conversion' => 1000000], //megawatt
+    'gw' => ['base' => 'w', 'conversion' => 1000000000], //gigawatt
+    'hp' => ['base' => 'w', 'conversion' => 745.7], //horsepower
 );
